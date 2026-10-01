@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="nl-BE" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Vragenlijst vooraf voor de UCLL Copilot Day, een halve dag rond Microsoft Copilot.">
+<title>UCLL Copilot Day, vragenlijst vooraf</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+/* UCLL-kleuren; de vragenlijst blijft bewust licht, ook bij een donker systeem. */
+:root,html[data-theme="dark"]{
+  color-scheme: light;
+  --cp-bg:#F2FAFE;
+  --cp-bg-elevated:#FFFFFF;
+  --cp-surface:#FFFFFF;
+  --cp-surface-soft:#F2FAFE;
+  --cp-text:#333333;
+  --cp-text-muted:#4D5A66;
+  --cp-text-soft:#5C6570;
+  --cp-border:#DFE5EA;
+  --cp-border-strong:#7A8794;
+  --cp-accent:#E30046;
+  --cp-accent-hover:#B40A4D;
+  --cp-accent-fg:#FFFFFF;
+  --cp-accent-soft:rgba(227,0,70,.08);
+  --cp-accent-border:rgba(227,0,70,.30);
+  --cp-navy:#003469;
+  --cp-navy-soft:#F2FAFE;
+  --cp-navy-border:rgba(0,52,105,.30);
+  --cp-deep-soft:rgba(180,10,77,.08);
+  --cp-deep-border:rgba(180,10,77,.30);
+  --cp-link:var(--cp-navy);
+  --cp-success:var(--cp-navy);
+  --cp-track:#DFE5EA;
+  --cp-current:var(--cp-accent);
+  --cp-current-ink:var(--cp-accent-hover);
+  --cp-current-soft:var(--cp-accent-soft);
+  --cp-shadow:0 0 2px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.14);
+  --cp-shadow-sm:var(--cp-shadow);
+  --cp-shadow-color:rgba(0,52,105,.08);
+  --cp-shadow-strong-color:rgba(0,52,105,.32);
+  --cp-thumb-shadow:0 1px 5px rgba(0,52,105,.32);
+  --cp-dialog-shadow:0 24px 60px rgba(0,52,105,.25);
+  --cp-overlay:rgba(0,52,105,.50);
+  --radius:14px;
+  --radius-sm:10px;
+  --maxw:1080px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  font-family:"Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  color:var(--cp-text);
+  background:var(--cp-bg);
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,h4{line-height:1.22;margin:0;font-weight:700;letter-spacing:-.011em}
+
+p{margin:0 0 .85rem}
+p:last-child{margin-block-end:0}
+
+a{color:var(--cp-accent-hover);text-underline-offset:.16em}
+a:hover{color:var(--cp-accent-hover)}
+
+.wrap{max-inline-size:var(--maxw);margin-inline:auto;padding-inline:clamp(1rem,3.5vw,2rem)}
+
+.skiplink{
+  position:absolute;inset-block-start:-100px;inset-inline-start:1rem;z-index:99;
+  background:var(--cp-surface);color:var(--cp-text);padding:.7rem 1.1rem;border-radius:0 0 10px 10px;
+  font-weight:600;box-shadow:var(--cp-shadow);
+}
+.skiplink:focus{inset-block-start:0}
+
+:focus-visible{outline:3px solid var(--cp-accent-hover);outline-offset:2px;border-radius:4px}
+.hero :focus-visible{outline-color:var(--cp-accent-fg)}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--cp-navy);color:var(--cp-accent-fg)}
+.hero-inner{padding-block:clamp(2.1rem,5.4vw,3.4rem)}
+.hero-brand{font-size:.9rem;font-weight:600;margin-block-end:.65rem}
+.hero h1{font-size:clamp(1.85rem,5.2vw,3rem);letter-spacing:-.022em}
+.hero-sub{font-size:clamp(1.15rem,2.6vw,1.6rem);font-weight:600;margin-block-start:.3rem;opacity:1}
+.hero-line{margin-block-start:.85rem;font-size:clamp(1rem,1.9vw,1.14rem);max-inline-size:44ch;opacity:1}
+
+/* Witruimte onder de band, zodat de banner als een eigen vlak leest en het
+   eerste blok er niet tegenaan plakt. Tussen 32px en 40px. */
+main{padding-block-start:clamp(2rem,3.4vw,2.5rem)}
+
+/* ---------- Cards and boxes ---------- */
+.card{
+  background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:var(--radius);
+  box-shadow:var(--cp-shadow-sm);padding:clamp(1.1rem,2.6vw,1.6rem);margin-block-end:1.1rem;
+}
+.card-lead{border-block-start:5px solid var(--cp-current)}
+
+.box{border-radius:var(--radius);padding:1.05rem 1.2rem;margin-block-start:1.1rem}
+.box h3{font-size:1.02rem;margin-block-end:.55rem;display:flex;align-items:center;gap:.5rem}
+.box-red{background:var(--cp-current-soft);border:1px solid var(--cp-accent-border)}
+.box-deep{background:var(--cp-deep-soft);border:1px solid var(--cp-deep-border)}
+.box-navy{background:var(--cp-navy-soft);border:1px solid var(--cp-navy-border)}
+.card.box-navy{margin-block:0 1.1rem;border-inline-start:5px solid var(--cp-navy)}
+.card.box-navy h3{color:var(--cp-navy);font-size:1.05rem;margin-block-end:.45rem}
+.agenda-kop{font-size:1.02rem;margin-block-start:1.5rem}
+
+.box ul{margin:0;padding-inline-start:1.15rem}
+.box li{margin-block-end:.5rem}
+.box li:last-child{margin-block-end:0}
+
+.bronnen{list-style:none;margin:.8rem 0 0;padding:0}
+.bronnen li{margin-block-end:.45rem;padding-inline-start:1.3rem;position:relative}
+.bronnen li::before{content:"";position:absolute;inset-inline-start:0;inset-block-start:.58em;inline-size:7px;block-size:7px;border-radius:50%;background:var(--cp-accent)}
+
+.tbl-wrap{overflow-x:auto;margin-block-start:.9rem;border:1px solid var(--cp-border);border-radius:var(--radius-sm)}
+table.agenda{border-collapse:collapse;inline-size:100%;font-size:.95rem}
+table.agenda th,table.agenda td{text-align:start;padding:.6rem .9rem;border-block-end:1px solid var(--cp-border)}
+table.agenda thead th{background:var(--cp-accent);color:var(--cp-accent-fg);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase}
+table.agenda tbody tr:last-child td{border-block-end:0}
+table.agenda tbody tr:nth-child(even){background:var(--cp-surface-soft)}
+table.agenda td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600;color:var(--cp-accent-hover)}
+
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cp-current-ink);margin-block-end:.4rem}
+
+/* ---------- Identification ---------- */
+.ident-grid{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-block-start:.95rem}
+.field label{display:block;font-weight:600;font-size:.9rem;margin-block-end:.32rem}
+.field .opt-tag{font-weight:500;color:var(--cp-text-soft);font-size:.82rem}
+input[type=text],input[type=email],input[type=date],select,textarea{
+  inline-size:100%;font:inherit;color:var(--cp-text);background:var(--cp-surface);
+  border:1.5px solid var(--cp-border-strong);border-radius:var(--radius-sm);padding:.6rem .75rem;
+}
+/* De zachte ring is een schaduw, zodat de duidelijke toetsenbordomlijning
+   van :focus-visible niet overschreven wordt. */
+input[type=text]:focus,input[type=email]:focus,input[type=date]:focus,select:focus,textarea:focus{
+  border-color:var(--cp-current);box-shadow:0 0 0 3px var(--cp-current-soft)
+}
+select{cursor:pointer}
+textarea{resize:vertical;min-block-size:7.2rem;line-height:1.55}
+
+/* ---------- Tabs ---------- */
+.tabbar{
+  position:sticky;inset-block-start:0;z-index:30;background:var(--cp-surface);
+  border-block-end:1px solid var(--cp-border);box-shadow:0 6px 18px var(--cp-shadow-color);
+}
+.tabbar-inner{display:flex;gap:.4rem;overflow-x:auto;padding-block:.5rem;scrollbar-width:thin}
+[role=tab]{
+  flex:1 1 0;min-inline-size:172px;text-align:start;cursor:pointer;font:inherit;
+  background:var(--cp-surface-soft);border:1.5px solid var(--cp-border);border-block-end-width:4px;
+  border-radius:var(--radius-sm);padding:.6rem .8rem;color:var(--cp-text-muted);
+  display:flex;flex-direction:column;gap:.2rem;transition:background .12s,border-color .12s,color .12s;
+}
+[role=tab]:hover{background:var(--cp-deep-soft);border-color:var(--cp-accent-hover)}
+[role=tab][aria-selected=true]{
+  background:var(--cp-surface);color:var(--cp-text);
+  border-color:var(--cp-border);border-block-end-color:var(--cp-tab-accent);
+  box-shadow:0 2px 10px var(--cp-shadow-color)
+}
+.tab-top{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+.tab-nr{
+  inline-size:1.45rem;block-size:1.45rem;flex:none;border-radius:50%;display:grid;place-items:center;
+  font-size:.78rem;font-weight:700;background:var(--cp-tab-accent);color:var(--cp-accent-fg)
+}
+.tab-title{font-weight:700;font-size:.95rem;color:inherit;line-height:1.2}
+.tab-badge{
+  display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:.16rem .5rem;border-radius:999px;background:var(--cp-tab-soft);color:var(--cp-tab-ink);
+  border:1px solid var(--cp-tab-accent);white-space:nowrap
+}
+.tab-count{font-size:.78rem;color:var(--cp-text-soft);font-variant-numeric:tabular-nums}
+[role=tab][aria-selected=true] .tab-count{color:var(--cp-text-muted);font-weight:600}
+.tab-count.done{color:var(--cp-success);font-weight:700}
+
+[data-accent=red]{--cp-tab-accent:var(--cp-accent);--cp-tab-soft:var(--cp-accent-soft);--cp-tab-ink:var(--cp-accent-hover)}
+[data-accent=navy]{--cp-tab-accent:var(--cp-navy);--cp-tab-soft:var(--cp-navy-soft);--cp-tab-ink:var(--cp-navy)}
+[data-accent=deep]{--cp-tab-accent:var(--cp-accent-hover);--cp-tab-soft:var(--cp-deep-soft);--cp-tab-ink:var(--cp-accent-hover)}
+
+.panel{padding-block:1.4rem 0}
+.panel.deel-A{--cp-current:var(--cp-accent);--cp-current-soft:var(--cp-accent-soft)}
+.panel.deel-B{--cp-current:var(--cp-navy);--cp-current-ink:var(--cp-navy);--cp-current-soft:var(--cp-navy-soft)}
+.panel.deel-C,.panel.deel-D{--cp-current:var(--cp-accent-hover);--cp-current-soft:var(--cp-deep-soft)}
+
+.part-head{margin-block-end:1.1rem}
+.part-head h2{font-size:clamp(1.3rem,3vw,1.7rem)}
+.part-head .sub{color:var(--cp-text-muted);margin-block-start:.35rem}
+
+.sec-head{
+  display:flex;align-items:baseline;gap:.7rem;margin:1.7rem 0 .85rem;
+  padding-block-end:.5rem;border-block-end:2px solid var(--cp-current-soft)
+}
+.sec-head h3{font-size:1.14rem;color:var(--cp-current-ink)}
+.panel > .sec-head:first-of-type{margin-block-start:.4rem}
+
+/* ---------- Progress ---------- */
+.progress-card{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.progress-card .ptext{font-weight:600;font-size:.92rem}
+.pbar{flex:1 1 220px;block-size:11px;background:var(--cp-track);border-radius:999px;overflow:hidden;min-inline-size:160px}
+.pbar > i{display:block;block-size:100%;inline-size:0;border-radius:999px;background:linear-gradient(90deg,var(--cp-accent-hover),var(--cp-accent));transition:inline-size .25s ease}
+.pbar.full > i{background:linear-gradient(90deg,var(--cp-success),var(--cp-success))}
+
+/* ---------- Question card ---------- */
+.q{
+  background:var(--cp-surface);border:1px solid var(--cp-border);border-inline-start:5px solid var(--cp-current);
+  border-radius:var(--radius);box-shadow:var(--cp-shadow-sm);
+  padding:clamp(1rem,2.4vw,1.4rem);margin-block-end:1rem;
+}
+.q-head{display:flex;gap:.8rem;align-items:flex-start;margin-block-end:.2rem}
+.q-head-txt{min-inline-size:0}
+.q-nr{
+  flex:none;inline-size:2.1rem;block-size:2.1rem;border-radius:9px;display:grid;place-items:center;
+  font-weight:700;font-size:.95rem;background:var(--cp-current-soft);color:var(--cp-current-ink);
+  font-variant-numeric:tabular-nums
+}
+.q-title{font-size:1.06rem;font-weight:700;margin:.16rem 0 0}
+.q-hint{
+  display:inline-block;margin-block-start:.45rem;font-size:.76rem;color:var(--cp-text-soft);
+  background:var(--cp-surface-soft);border:1px solid var(--cp-border);border-radius:999px;padding:.14rem .6rem
+}
+.q-lead{margin-block-start:.7rem;color:var(--cp-text-muted)}
+.q-help{
+  margin-block-start:.7rem;font-size:.92rem;color:var(--cp-text-muted);
+  background:var(--cp-surface-soft);border-inline-start:3px solid var(--cp-border-strong);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:.6rem .8rem
+}
+.q-body{margin-block-start:.9rem}
+.why{
+  margin-block-start:.95rem;font-size:.89rem;color:var(--cp-text-muted);line-height:1.5;
+  background:var(--cp-current-soft);border-radius:var(--radius-sm);padding:.7rem .85rem
+}
+.why b{color:var(--cp-current-ink)}
+
+/* ---------- Options ---------- */
+.opts{display:grid;gap:.42rem}
+.opts.cols2{grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.optwrap{min-inline-size:0;display:flex;flex-direction:column}
+.optwrap > .opt{flex:1 1 auto}
+.opt{
+  display:flex;align-items:flex-start;gap:.7rem;padding:.6rem .8rem;cursor:pointer;
+  border:1.5px solid var(--cp-border);border-radius:var(--radius-sm);background:var(--cp-surface);
+  transition:border-color .12s,background .12s;
+}
+.opt:hover{background:var(--cp-deep-soft);border-color:var(--cp-accent-hover)}
+.opt.sel{border-color:var(--cp-current);background:var(--cp-current-soft)}
+.opt.blocked{opacity:.5}
+.opt-txt{flex:1 1 auto}
+.opt input{
+  appearance:none;-webkit-appearance:none;margin:.18rem 0 0;flex:none;
+  inline-size:20px;block-size:20px;border:2px solid var(--cp-border-strong);background:var(--cp-surface);
+  display:grid;place-content:center;cursor:pointer;transition:border-color .12s
+}
+.opt input[type=radio]{border-radius:50%}
+.opt input[type=checkbox]{border-radius:5px}
+.opt input:checked{border-color:var(--cp-current)}
+.opt input::before{content:"";inline-size:10px;block-size:10px;background:var(--cp-current);transform:scale(0);transition:transform .12s ease-in-out}
+.opt input[type=radio]::before{border-radius:50%}
+.opt input[type=checkbox]::before{inline-size:12px;block-size:12px;clip-path:polygon(14% 45%,2% 60%,40% 96%,98% 22%,86% 9%,39% 71%)}
+.opt input:checked::before{transform:scale(1)}
+.fill{margin:.45rem 0 .15rem;padding-inline-start:2.2rem}
+.fill input{max-inline-size:34rem}
+.limit-msg{
+  margin-block-start:.6rem;font-size:.88rem;font-weight:600;color:var(--cp-accent-hover);
+  background:var(--cp-deep-border);border:1px solid var(--cp-accent-hover);border-radius:var(--radius-sm);
+  padding:.5rem .75rem
+}
+
+/* ---------- Textarea ---------- */
+.ta-foot{display:flex;justify-content:flex-end;font-size:.8rem;color:var(--cp-text-soft);margin-block-start:.3rem;font-variant-numeric:tabular-nums}
+
+/* ---------- Sliders ---------- */
+.slider{
+  display:grid;grid-template-columns:1fr auto;gap:.35rem 1rem;align-items:center;
+  padding:.75rem 0;border-block-end:1px dashed var(--cp-border)
+}
+.slider:last-of-type{border-block-end:0}
+.slider .s-label{grid-column:1/-1;font-weight:600;font-size:.96rem}
+.s-ctrl{grid-column:1;min-inline-size:0}
+.s-read{
+  grid-column:2;grid-row:2;text-align:center;min-inline-size:4.4rem;
+  border:1.5px solid var(--cp-border);border-radius:var(--radius-sm);padding:.25rem .5rem;background:var(--cp-surface-soft)
+}
+.s-val{display:block;font-size:1.75rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums;color:var(--cp-current-ink)}
+.s-cap{display:block;font-size:.68rem;color:var(--cp-text-soft);letter-spacing:.02em}
+.slider.untouched .s-val{color:var(--cp-border-strong)}
+.slider.untouched .s-read{border-style:dashed}
+
+input[type=range]{
+  inline-size:100%;appearance:none;-webkit-appearance:none;background:transparent;margin:0;cursor:pointer
+}
+input[type=range]:focus{outline:none}
+input[type=range]::-webkit-slider-runnable-track{block-size:8px;border-radius:999px;background:var(--cp-track);border:1px solid var(--cp-border)}
+input[type=range]::-moz-range-track{block-size:8px;border-radius:999px;background:var(--cp-track);border:1px solid var(--cp-border)}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;inline-size:24px;block-size:24px;border-radius:50%;margin-block-start:-9px;
+  background:var(--cp-current);border:3px solid var(--cp-accent-fg);box-shadow:0 1px 5px var(--cp-shadow-strong-color)
+}
+input[type=range]::-moz-range-thumb{
+  inline-size:18px;block-size:18px;border-radius:50%;
+  background:var(--cp-current);border:3px solid var(--cp-accent-fg);box-shadow:0 1px 5px var(--cp-shadow-strong-color)
+}
+.slider.untouched input[type=range]::-webkit-slider-thumb{background:var(--cp-surface);border:2px dashed var(--cp-border-strong);box-shadow:none}
+.slider.untouched input[type=range]::-moz-range-thumb{background:var(--cp-surface);border:2px dashed var(--cp-border-strong);box-shadow:none}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px var(--cp-current-soft)}
+input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 4px var(--cp-current-soft)}
+
+.ticks{display:flex;justify-content:space-between;margin-block-start:.15rem;font-size:.74rem;color:var(--cp-text-soft);font-variant-numeric:tabular-nums}
+.ticks span{position:relative;padding-block-start:.3rem}
+.ticks span::before{content:"";position:absolute;inset-block-start:0;inset-inline-start:50%;inline-size:1px;block-size:5px;background:var(--cp-border-strong)}
+.ticks span:first-child::before{inset-inline-start:2px}
+.ticks span:last-child::before{inset-inline-start:auto;inset-inline-end:2px}
+.ends{
+  display:flex;justify-content:space-between;gap:.9rem;margin-block-start:.3rem;
+  font-size:.78rem;line-height:1.35;color:var(--cp-text-muted)
+}
+.ends span{max-inline-size:47%}
+.ends span:last-child{text-align:end}
+.ends b{font-weight:700;color:var(--cp-current-ink);font-variant-numeric:tabular-nums}
+.s-clear{
+  grid-column:2;grid-row:3;font:inherit;font-size:.74rem;background:none;border:0;color:var(--cp-text-soft);
+  cursor:pointer;text-decoration:underline;padding:.15rem;justify-self:center
+}
+.s-clear:hover{color:var(--cp-current-ink)}
+
+.ankers{list-style:none;margin:.9rem 0 0;padding:0;display:grid;gap:.3rem}
+.ankers li{
+  font-size:.9rem;padding:.42rem .7rem;border-radius:var(--radius-sm);
+  border:1.5px solid transparent;color:var(--cp-text-muted);transition:background .12s,border-color .12s
+}
+.ankers li.on{background:var(--cp-current-soft);border-color:var(--cp-current);color:var(--cp-text);font-weight:500}
+
+/* ---------- Capability grid ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:.4rem;margin-block-end:.9rem}
+.legend span{
+  font-size:.8rem;background:var(--cp-current-soft);border:1px solid var(--cp-accent-border);
+  border-radius:999px;padding:.2rem .65rem
+}
+.gridcount{font-size:.82rem;color:var(--cp-text-soft);margin-block-end:.55rem;font-variant-numeric:tabular-nums}
+.grid-sub{font-weight:700;font-size:.98rem;margin:1.4rem 0 .6rem;color:var(--cp-current-ink)}
+.capwrap{border:1px solid var(--cp-border);border-radius:var(--radius-sm);overflow:hidden}
+table.cap{border-collapse:collapse;inline-size:100%;font-size:.93rem}
+table.cap th,table.cap td{padding:.55rem .7rem;border-block-end:1px solid var(--cp-border);text-align:start;vertical-align:top}
+table.cap thead th{background:var(--cp-current-soft);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--cp-current-ink);white-space:nowrap}
+table.cap thead th.num{text-align:center;inline-size:3.1rem}
+table.cap tbody tr:last-child td{border-block-end:0}
+table.cap tbody tr:hover{background:var(--cp-deep-soft)}
+table.cap tbody tr.rated{background:var(--cp-current-soft)}
+table.cap tbody tr.rated:hover{background:var(--cp-current-soft)}
+.cap-n{font-weight:700}
+.cap-d{color:var(--cp-text-muted);font-size:.9rem}
+td.num{text-align:center;vertical-align:middle}
+td.num label{display:inline-flex;align-items:center;justify-content:center;gap:.3rem;cursor:pointer;padding:.25rem;border-radius:8px}
+td.num label:hover{background:var(--cp-deep-border)}
+td.num input{
+  appearance:none;-webkit-appearance:none;margin:0;inline-size:20px;block-size:20px;border-radius:50%;
+  border:2px solid var(--cp-border-strong);background:var(--cp-surface);display:grid;place-content:center;cursor:pointer
+}
+td.num input:checked{border-color:var(--cp-current)}
+td.num input::before{content:"";inline-size:10px;block-size:10px;border-radius:50%;background:var(--cp-current);transform:scale(0);transition:transform .12s}
+td.num input:checked::before{transform:scale(1)}
+.numlbl{display:none;font-size:.8rem;font-weight:600}
+
+@media (max-width:560px){
+  .ends{flex-direction:column;gap:.15rem}
+  .ends span{max-inline-size:100%}
+  .ends span:last-child{text-align:start}
+}
+
+@media (max-width:860px){
+  .capwrap{border:0;border-radius:0}
+  table.cap,table.cap tbody,table.cap tr,table.cap td{display:block;inline-size:auto}
+  table.cap thead{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  table.cap tr{
+    border:1.5px solid var(--cp-border);border-radius:var(--radius-sm);
+    margin-block-end:.6rem;padding:.7rem .8rem;background:var(--cp-surface)
+  }
+  table.cap tr.rated{border-color:var(--cp-current)}
+  table.cap td{border:0;padding:0}
+  table.cap td.cap-cell{margin-block-end:.15rem}
+  table.cap td.desc{margin-block-end:.6rem}
+  table.cap td.num{
+    display:inline-flex;inline-size:calc(25% - .3rem);margin-inline-end:.4rem;text-align:center
+  }
+  table.cap td.num:last-child{margin-inline-end:0}
+  td.num label{
+    inline-size:100%;flex-direction:row;border:1.5px solid var(--cp-border);
+    border-radius:var(--radius-sm);padding:.42rem .2rem
+  }
+  .numlbl{display:inline}
+}
+
+/* ---------- Top 3 ---------- */
+.top3row{
+  display:grid;gap:.5rem;grid-template-columns:1fr;padding:.75rem 0;border-block-end:1px dashed var(--cp-border)
+}
+.top3row:last-child{border-block-end:0}
+.top3row .t3lab{font-weight:600;font-size:.94rem}
+.t3grid{display:grid;gap:.5rem;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:680px){.t3grid{grid-template-columns:1fr}}
+
+/* ---------- Action bar ---------- */
+.actions{
+  background:var(--cp-surface);border:1px solid var(--cp-border);border-block-start:5px solid var(--cp-navy);
+  border-radius:var(--radius);box-shadow:var(--cp-shadow);padding:clamp(1.1rem,2.6vw,1.5rem);
+  margin-block:1.6rem 0
+}
+.actions h2{font-size:1.16rem;margin-block-end:.3rem}
+.actions .sub{color:var(--cp-text-muted);font-size:.94rem}
+.btnrow{display:flex;gap:.65rem;flex-wrap:wrap;margin-block-start:1rem}
+.btn{
+  font:inherit;font-weight:700;cursor:pointer;border-radius:var(--radius-sm);
+  padding:.72rem 1.15rem;border:1.5px solid transparent;transition:transform .08s,box-shadow .12s,background .12s;
+  display:inline-flex;align-items:center;gap:.5rem
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(116.43deg,var(--cp-accent) 0%,var(--cp-accent-hover) 100%);color:var(--cp-accent-fg);border-color:var(--cp-accent-hover);box-shadow:var(--cp-shadow-sm)}
+.btn-primary:hover{background:var(--cp-accent-hover)}
+.btn-ghost{background:var(--cp-surface);color:var(--cp-text-muted);border-color:var(--cp-border-strong)}
+.btn-ghost:hover{background:var(--cp-deep-soft);border-color:var(--cp-accent-hover);color:var(--cp-text)}
+.btn-quiet{background:none;border:0;color:var(--cp-text-soft);text-decoration:underline;padding:.4rem .2rem;font-weight:600;cursor:pointer;font-size:.88rem}
+.btn-quiet:hover{color:var(--cp-accent-hover)}
+
+.save-note{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-block-start:1rem;font-size:.86rem;color:var(--cp-text-soft)}
+.dot{inline-size:8px;block-size:8px;border-radius:50%;background:var(--cp-navy);flex:none}
+
+.closing{
+  background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:var(--radius);
+  padding:clamp(1.1rem,2.6vw,1.5rem);margin-block-start:1.1rem;color:var(--cp-text-muted);box-shadow:var(--cp-shadow-sm)
+}
+.closing h2{font-size:1.06rem;color:var(--cp-text);margin-block-end:.4rem}
+
+footer.foot{padding-block:1.6rem 2.6rem;color:var(--cp-text-soft);font-size:.84rem;text-align:center}
+
+/* ---------- Dialog ---------- */
+.overlay{
+  position:fixed;inset:0;z-index:60;background:var(--cp-overlay);
+  display:flex;align-items:center;justify-content:center;padding:1rem
+}
+.overlay[hidden]{display:none}
+.modal{
+  background:var(--cp-surface);border-radius:var(--radius);box-shadow:0 24px 60px var(--cp-shadow-strong-color);
+  max-inline-size:34rem;inline-size:100%;max-block-size:86vh;overflow:auto;
+  padding:clamp(1.2rem,3vw,1.7rem);border-block-start:6px solid var(--cp-accent-hover)
+}
+.modal h2{font-size:1.2rem;margin-block-end:.55rem}
+.modal .open-list{
+  margin:.9rem 0;padding:.75rem .9rem;background:var(--cp-current-soft);border-radius:var(--radius-sm);
+  font-weight:600;color:var(--cp-accent-hover)
+}
+.modal .open-list ul{margin:.45rem 0 0;padding-inline-start:1.1rem;font-weight:500;color:var(--cp-text-muted)}
+.modal .open-list li{margin-block-end:.25rem}
+
+.toast{
+  position:fixed;inset-block-end:1.1rem;inset-inline-start:50%;transform:translateX(-50%) translateY(1.5rem);
+  background:var(--cp-navy);color:var(--cp-accent-fg);padding:.7rem 1.1rem;border-radius:999px;font-size:.9rem;font-weight:600;
+  box-shadow:0 10px 30px var(--cp-shadow-strong-color);opacity:0;transition:opacity .2s,transform .2s;
+  pointer-events:none;z-index:80;max-inline-size:calc(100% - 2rem);text-align:center
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.print-only{display:none}
+.vh{position:absolute;inline-size:1px;block-size:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Print ---------- */
+@media print{
+  @page{margin:14mm}
+  :root,html[data-theme="dark"]{--cp-bg:var(--cp-surface);--cp-surface-soft:var(--cp-surface);--cp-shadow:none;--cp-shadow-sm:none}
+  body{background:var(--cp-surface);font-size:11pt}
+  .tabbar,.btnrow,.save-note,.skiplink,.overlay,.toast,.s-clear,.progress-card,.actions .sub{display:none !important}
+  .print-only{display:block}
+  [role=tabpanel][hidden]{display:block !important}
+  .hero{color:var(--cp-accent-fg);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  main{padding-block-start:10mm}
+  .card,.q,.actions,.closing,.box{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+  .q{border:1px solid var(--cp-border-strong);border-inline-start:4px solid var(--cp-accent)}
+  .panel{break-before:page;page-break-before:always}
+  .panel:first-of-type{break-before:auto;page-break-before:auto}
+  table.cap tbody tr:hover{background:transparent}
+  .ankers li.on{border-color:var(--cp-border-strong)}
+  .ends{color:var(--cp-text);font-size:9pt;display:flex !important}
+  .ends b{color:var(--cp-accent-hover)}
+  .ticks{color:var(--cp-text-soft)}
+  a{color:var(--cp-text);text-decoration:underline}
+}
+</style>
+</head>
+<body>
+<a class="skiplink" href="#hoofdinhoud">Direct naar de vragenlijst</a>
+
+<header class="hero">
+  <div class="hero-inner wrap">
+    <p class="hero-brand">UCLL · Hogeschool van de Moving Minds</p>
+    <h1>UCLL Copilot Day</h1>
+    <p class="hero-sub">Vragenlijst vooraf</p>
+    <p class="hero-line">Help ons de halve dag af te stemmen op jouw werk</p>
+    <div class="btnrow">
+      <button type="button" class="btn btn-ghost" id="wisBoven">Alles wissen</button>
+    </div>
+  </div>
+</header>
+
+<main id="hoofdinhoud">
+  <noscript>
+    <div class="wrap">
+      <div class="card card-lead">
+        <h2>Zet JavaScript aan</h2>
+        <p>Deze vragenlijst werkt in je browser, zonder internetverbinding. Zet JavaScript aan om de vragen te zien en je antwoorden te kunnen downloaden.</p>
+      </div>
+    </div>
+  </noscript>
+
+  <div class="wrap" id="intro"></div>
+
+  <div class="tabbar">
+    <div class="wrap">
+      <div class="tabbar-inner" role="tablist" aria-label="Delen van de vragenlijst" id="tablist"></div>
+    </div>
+  </div>
+
+  <div class="wrap" id="panels"></div>
+  <div class="wrap" id="onderaan"></div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>UCLL Copilot Day, vragenlijst vooraf</p>
+    <p><em>By submitting this form to prepare for the event, you agree that Microsoft uses the data provided to prepare and follow-up on the UCLL Copilot Day. Please read the Microsoft Privacy Statement: <a href="https://aka.ms/privacy" target="_blank" rel="noopener noreferrer">https://aka.ms/privacy</a></em></p>
+  </div>
+</footer>
+
+<div class="overlay" id="dlg" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="dlgKop">
+    <h2 id="dlgKop"></h2>
+    <div id="dlgBody"></div>
+    <div class="btnrow" id="dlgBtns"></div>
+    <button type="button" class="btn-quiet" id="dlgSluit">Sluiten</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+/* Inhoud van de vragenlijst, afgestemd op medewerkers van UCLL Hogeschool. */
+
+var CAPS = [
+  { n: "Chat agent builder", d: "maak je eigen agent in Copilot met je eigen instructies en kennis, zonder code" },
+  { n: "Researcher agent", d: "een redenerende agent die diep, meerstaps onderzoek doet in je werkinhoud en op het web" },
+  { n: "Analyst agent", d: "een redenerende agent die data uitpluist zoals een data scientist en uitlegt hoe ze tot het antwoord komt" },
+  { n: "Beeld maken", d: "afbeeldingen genereren en bewerken op basis van een beschrijving" },
+  { n: "Video maken", d: "korte videofragmenten genereren en bewerken op basis van een beschrijving" },
+  { n: "Notebooks", d: "bestanden, links en notities samenbrengen in een werkruimte waarover Copilot redeneert" },
+  { n: "Cowork", d: "langer, meerstaps werk uit handen geven en Copilot het laten uitvoeren over je bestanden, mails en vergaderingen" },
+  { n: "Automations", d: "terugkerend of getriggerd werk dat Copilot voor je uitvoert, bijvoorbeeld een wekelijkse samenvatting" },
+  { n: "Tasks", d: "Copilot die werkitems voor jou opneemt en opvolgt" },
+  { n: "Webpagina maken", d: "inhoud omzetten naar een eenvoudige, deelbare webpagina" },
+  { n: "App builder", d: "een kleine werkende app bouwen op basis van een beschrijving, zonder code" },
+  { n: "Geheugen en personalisatie", d: "Copilot die je voorkeuren, projecten en manier van werken onthoudt" },
+  { n: "Prompt gallery", d: "een gedeelde bibliotheek met klaargemaakte prompts voor jouw rol bij UCLL" },
+  { n: "Meerdere modellen in Copilot", d: "zelf het redeneermodel kiezen dat bij de taak past, in Word, Excel, PowerPoint en Outlook" },
+  { n: "Copilot in Teams", d: "vergaderverslagen, live notities, opvolgpunten en bijbenen wat je gemist hebt" },
+  { n: "Copilot in Outlook", d: "je inbox ordenen, lange conversaties samenvatten, antwoorden opstellen en herschrijven" },
+  { n: "Copilot Studio", d: "geavanceerde agents gekoppeld aan systemen en processen van UCLL", extra: true },
+  { n: "Agents voor SharePoint en kennis", d: "een agent die vertrekt van een site, opleiding of handboek", extra: true },
+  { n: "Copilot Vision", d: "Copilot die meekijkt op je scherm of in een document en helpt in context", extra: true },
+  { n: "Facilitator in Teams", d: "AI die tijdens een live vergadering meeschrijft en structuur aanbrengt", extra: true }
+];
+
+var CAP_LEGEND = [
+  "1 = niet relevant voor mij",
+  "2 = nieuwsgierig",
+  "3 = wil leren hoe ik het gebruik",
+  "4 = wil er iets mee bouwen"
+];
+
+var ANKERS = [
+  { lo: 0, hi: 2, t: "0 tot 2, **Nog niet gestart**: ik heb AI nauwelijks gebruikt" },
+  { lo: 3, hi: 4, t: "3 tot 4, **Eerste stappen**: ik stel af en toe een vraag en kijk wat eruit komt" },
+  { lo: 5, hi: 6, t: "5 tot 6, **Vaste gebruiker**: ik gebruik AI de meeste weken voor echt werk en weet ongeveer waar het goed in is" },
+  { lo: 7, hi: 8, t: "7 tot 8, **Gevorderd**: ik geef meerstaps werk uit handen, ik kijk het resultaat kritisch na, ik pas mijn manier van werken aan" },
+  { lo: 9, hi: 10, t: "9 tot 10, **Frontier**: ik zet agents in voor complex werk, ik herontwerp processen rond wat AI goed doet, en ik deel afspraken en werkwijzen met anderen" }
+];
+
+var AGENDA = [
+  ["08:45 - 09:15", "Welkom en opening"],
+  ["09:15 - 10:00", "Microsoft Copilot: herintroductie en strategische update"],
+  ["10:00 - 11:00", "Microsoft Copilot Premium voor beginnende en halfgevorderde gebruikers"],
+  ["11:00 - 12:00", "Microsoft Copilot Premium en Copilot Studio voor gevorderde gebruikers"]
+];
+
+var FREQ = ["Nooit", "Minder dan een keer per maand", "Enkele keren per maand", "Wekelijks", "Dagelijks", "Meerdere keren per dag"];
+
+var QUESTIONS = [
+  {
+    id: "q1", nr: 1, deel: "A", sec: "A1", type: "radio",
+    title: "Bij welk domein of welke ondersteunende functie van UCLL hoor je?",
+    hint: "Een antwoord",
+    opts: ["Lerarenopleiding", "Management", "Technologie", "Gezondheid", "Welzijn", "Praktijkgericht onderzoek, expertise of dienstverlening", "ICT en digitale ondersteuning", "Studentenadministratie en studentenondersteuning", "Marketing, communicatie en studentenwerving", "HR en personeel", "Financi\u00ebn en aankoop", "Facilitaire ondersteuning en campusbeheer", "Kwaliteit, beleid en bestuur", "Bibliotheek en leermiddelen", "Internationalisering", "Directie of leidinggevend team", "Andere (vul aan)"],
+    why: "Waarom we dit vragen: UCLL is actief in vijf brede interessegebieden: lerarenopleiding, management, technologie, gezondheid en welzijn. De eerste vijf opties volgen die indeling. De overige opties zijn algemene werkgebieden voor onderzoek, expertise, dienstverlening en ondersteuning, geen offici\u00eble departementsnamen. Kies wat het best bij jouw werk past."
+  },
+  {
+    id: "q2", nr: 2, deel: "A", sec: "A1", type: "radio",
+    title: "Welke omschrijving ligt het dichtst bij hoe jij je eigen rol ziet?",
+    hint: "Een antwoord",
+    opts: ["Docent of lector: lesgeven, cursusontwikkeling en evaluatie", "Onderzoeker of expert in praktijkgericht onderzoek en dienstverlening", "Co\u00f6rdinator van een opleiding of traject", "Studentgerichte ondersteuning: coaching, inschrijvingen, studentenvoorzieningen", "Administratieve en operationele ondersteuning", "Communicatie, marketing en content", "Profiel in IT, digitaal of data", "Analyse van data en rapportering", "Leidinggevende of verantwoordelijke voor een team, opleiding of dienst", "Beleid, kwaliteit en bestuur", "HR, financi\u00ebn of aankoop", "Manager van een project of programma", "Andere (vul aan)"]
+  },
+  {
+    id: "q3", nr: 3, deel: "A", sec: "A1", type: "scalerows",
+    title: "Hoe verdeelt jouw werkweek zich over deze vier soorten werk?",
+    hint: "Schaal 0 tot 10 per rij",
+    low: "komt bij mij nauwelijks voor", high: "vult het grootste deel van mijn week",
+    rows: ["Denkwerk: analyseren, problemen oplossen, opties afwegen, creatief denken", "Productiewerk: schrijven, bouwen, ontwerpen, materiaal voorbereiden", "Werken met mensen: vergaderen, coachen, afstemmen, feedback geven", "Informatie zoeken: opzoeken, verzamelen, verifi\u00ebren"],
+    why: "Waarom we dit vragen: de Work Trend Index 2026 analyseerde meer dan 100.000 gesprekken in Microsoft Copilot. 49% ondersteunt denkwerk, 17% productiewerk, 19% werken met mensen en 15% informatie zoeken. Als we jouw verdeling kennen, weten we welke demo's aanslaan."
+  },
+  {
+    id: "q4", nr: 4, deel: "A", sec: "A2", type: "checkbox",
+    title: "Welke AI gebruik je vandaag al voor je werk?",
+    hint: "Meerdere antwoorden mogelijk",
+    opts: ["Microsoft Copilot Chat", "Microsoft Copilot in Word, Excel, PowerPoint, Outlook of Teams", "Microsoft Copilot, de gratis versie", "ChatGPT", "Google Gemini", "Claude", "Perplexity", "GitHub Copilot", "NotebookLM", "Canva AI of Adobe Firefly", "DeepL of Grammarly", "Tools voor transcriptie of notulen", "Een tool specifiek voor mijn vakgebied (vul aan)", "Ik gebruik vandaag nog geen AI voor mijn werk", "Andere (vul aan)"]
+  },
+  {
+    id: "q5", nr: 5, deel: "A", sec: "A2", type: "radio",
+    title: "Hoe vaak gebruik je AI voor je werk?",
+    hint: "Een antwoord",
+    opts: FREQ.slice(),
+    why: "Waarom we dit vragen: de Work Trend Index 2026 gebruikt exact deze schaal om iemand die AI gebruikt te herkennen, zo zijn jouw antwoorden vergelijkbaar met het wereldwijde onderzoek."
+  },
+  {
+    id: "q6", nr: 6, deel: "A", sec: "A2", type: "radio",
+    title: "Welke van deze vier manieren van werken met AI past het best bij jou vandaag?",
+    hint: "Een antwoord",
+    opts: ["**Vragen**: ik stel korte vragen en krijg snel een antwoord", "**Verkennen**: ik probeer dingen uit, test wat de tool kan, leer al doende", "**Samenwerken**: ik werk heen en weer met AI aan een stuk werk en stuur onderweg bij", "**Delegeren**: ik geef een volledige opdracht in meerdere stappen uit handen en controleer het resultaat"],
+    why: "Waarom we dit vragen: de Work Trend Index 2026 beschrijft deze vier manieren, delegeren, samenwerken, vragen en verkennen, en stelt vast dat de sterkste gebruikers vooral weten welke manier bij welke taak past."
+  },
+  {
+    id: "q7", nr: 7, deel: "A", sec: "A2", type: "scalerows",
+    title: "Hoe waar zijn deze uitspraken voor jou?",
+    hint: "Schaal 0 tot 10 per rij",
+    low: "helemaal niet waar voor mij", high: "helemaal waar voor mij",
+    rows: ["Ik zie een antwoord van AI als een vertrekpunt, niet als het eindresultaat", "Ik merk het als een antwoord van AI fout of onvoldoende is", "Ik weet welke van mijn taken de moeite lonen om aan AI te geven", "Ik sta vooraf even stil bij wat AI doet en wat ik zelf doe", "Ik werk soms bewust zonder AI, om mijn eigen vaardigheden scherp te houden"],
+    why: "Waarom we dit vragen: de Work Trend Index 2026 stelde vast dat 86% van de mensen die AI gebruiken het resultaat als vertrekpunt behandelt, en dat kwaliteitscontrole van wat AI oplevert en kritisch denken de twee menselijke vaardigheden zijn die zij het belangrijkst noemen naarmate AI meer werk overneemt."
+  },
+  {
+    id: "q8", nr: 8, deel: "A", sec: "A3", type: "grid",
+    title: "Hoe sterk is je interesse per mogelijkheid?",
+    hint: "Beoordeling per rij",
+    lead: "Duid per mogelijkheid aan hoe sterk je interesse is. Zo weten we hoe diep we in elke sessie gaan en wat we live tonen.",
+    extraHeading: "Ook beschikbaar, duid aan als het je interesseert"
+  },
+  {
+    id: "q9", nr: 9, deel: "A", sec: "A3", type: "top3",
+    title: "Kies je top drie uit de lijst hierboven en schrijf erbij waarom.",
+    hint: "Rangschikking plus korte tekst",
+    rows: ["1ste keuze en waarom", "2de keuze en waarom", "3de keuze en waarom"]
+  },
+  {
+    id: "q10", nr: 10, deel: "A", sec: "A4", type: "radio",
+    title: "Naar welke sessie kijk je het meest uit?",
+    hint: "Een antwoord",
+    opts: ["Welkom en opening", "Microsoft Copilot: herintroductie en strategische update", "Microsoft Copilot Premium voor beginnende en halfgevorderde gebruikers", "Microsoft Copilot Premium en Copilot Studio voor gevorderde gebruikers"]
+  },
+  {
+    id: "q11", nr: 11, deel: "A", sec: "A4", type: "longtext",
+    title: "Wat maakt deze halve dag geslaagd voor jou? Noem een ding waarmee je wil buitenstappen.",
+    hint: "Lange tekst"
+  },
+  {
+    id: "q12", nr: 12, deel: "A", sec: "A4", type: "checkbox",
+    title: "Wil je na de workshop betrokken blijven?",
+    hint: "Meerdere antwoorden mogelijk",
+    opts: ["Ja, als champion voor Copilot in mijn team, opleiding of dienst bij UCLL", "Ja, ik doe mee aan een praktische vervolgsessie", "Ja, ik heb een concreet proces dat ik samen met het team wil aanpakken", "Ik wil graag zelf een agent proberen bouwen", "Nu even niet, ik zie eerst wat de dag oplevert"]
+  },
+  {
+    id: "q13", nr: 13, deel: "A", sec: "A4", type: "longtext",
+    title: "Is er iets dat je graag behandeld ziet en dat niet in de agenda staat?",
+    hint: "Lange tekst"
+  },
+
+  {
+    id: "q14", nr: 14, deel: "B", sec: "B1", type: "longtext",
+    title: "Beschrijf een proces in je werk dat echt veel tijd of veel stappen kost.",
+    hint: "Lange tekst",
+    help: "Hulpvragen: Wat gebeurt er, stap voor stap? Hoe vaak komt het terug? Hoe lang duurt het ongeveer? Wie is er nog bij betrokken? Hoe ziet een goed resultaat eruit?"
+  },
+  {
+    id: "q15", nr: 15, deel: "B", sec: "B1", type: "radio",
+    title: "Hoeveel tijd kost dat proces je in een gewone maand?",
+    hint: "Een antwoord",
+    opts: ["Minder dan 2 uur", "2 tot 5 uur", "5 tot 10 uur", "10 tot 20 uur", "Meer dan 20 uur"]
+  },
+  {
+    id: "q16", nr: 16, deel: "B", sec: "B1", type: "longtext",
+    title: "Beschrijf een proces dat echt energie vreet, ook al duurt het niet zo lang.",
+    hint: "Lange tekst",
+    help: "Hulpvragen: Wat maakt het zwaar? Is het de herhaling, het achternazitten, het springen tussen systemen, de emotionele belasting, de opmaak, het wachten? Waaraan zou je die energie liever besteden?",
+    why: "Waarom we dit vragen: onderzoek uit The New Future of Work Reader over onzichtbaar werk toont dat veel van de communicatie, co\u00f6rdinatie en relatieopbouw die mensen doen nooit in een functieomschrijving staat. Net dat werk wordt het vaakst over het hoofd gezien wanneer we op zoek gaan naar kansen voor AI."
+  },
+  {
+    id: "q17", nr: 17, deel: "B", sec: "B1", type: "checkbox",
+    title: "Welk werk zou je het liefst uit handen geven?",
+    hint: "Meerdere antwoorden mogelijk",
+    opts: ["Lange documenten, mailconversaties of vergaderingen samenvatten", "Eerste versies van teksten schrijven", "Informatie zoeken en samenbrengen uit verschillende systemen", "Inhoud herwerken en opnieuw opmaken", "Vergaderingen voorbereiden en acties opvolgen", "Rapportering en terugkerende statusupdates", "Data opschonen, analyseren en visualiseren", "Steeds dezelfde vragen beantwoorden", "Vertalen en taalcorrectie", "Cursusmateriaal of evaluaties voorbereiden", "Co\u00f6rdineren en mensen achternazitten", "Andere (vul aan)"]
+  },
+  {
+    id: "q18", nr: 18, deel: "B", sec: "B2", type: "scale",
+    title: "Waar plaats je jezelf vandaag als het op AI aankomt?",
+    hint: "Schaal 0 tot 10",
+    low: "nog niet gestart", high: "ik bouw en herontwerp met AI",
+    ankers: true,
+    why: "Waarom we dit vragen: de Work Trend Index 2026 herkent Frontier Professionals, 16% van de bevraagde mensen die AI gebruiken, aan drie gedragingen: gevorderd gebruik van agents voor complex meerstaps werk, processen routinematig herontwerpen, en deelnemen aan herhaalbare praktijken rond AI die verder reiken dan een persoon."
+  },
+  {
+    id: "q19", nr: 19, deel: "B", sec: "B2", type: "scale",
+    title: "En waar wil je over zes maanden staan?",
+    hint: "Schaal 0 tot 10, met dezelfde ankerpunten als vraag 18",
+    low: "nog niet gestart", high: "ik bouw en herontwerp met AI",
+    ankers: true
+  },
+  {
+    id: "q20", nr: 20, deel: "B", sec: "B2", type: "scalerows",
+    title: "Hoe zeker voel je je in deze vaardigheden?",
+    hint: "Schaal 0 tot 10 per rij",
+    low: "helemaal niet zeker", high: "heel zeker",
+    rows: ["Een heldere opdracht of prompt schrijven", "AI de juiste context en de juiste bestanden meegeven", "Nakijken en corrigeren wat eruit komt", "Aan een collega uitleggen hoe je het gebruikt", "Herkennen welke taak de moeite loont om te automatiseren"]
+  },
+
+  {
+    id: "q21", nr: 21, deel: "C", type: "checkbox",
+    title: "Welke AI of welke platformen gebruik je in je vrije tijd, buiten het werk?",
+    hint: "Meerdere antwoorden mogelijk",
+    opts: ["ChatGPT", "Microsoft Copilot, de gratis consumentenapp", "Google Gemini", "Claude", "Perplexity", "Meta AI in WhatsApp of Instagram", "DeepSeek", "Mistral, Le Chat", "Grok", "Beeldgeneratoren: Midjourney, DALL-E, Adobe Firefly, Canva AI", "Generatoren voor video of audio: Sora, Runway, ElevenLabs, Suno", "Hulp bij vertalen en schrijven: DeepL, Grammarly", "NotebookLM", "Functies met AI in apps die ik toch al gebruik, bijvoorbeeld op mijn telefoon, in foto's of streamingdiensten", "Ik gebruik priv\u00e9 geen AI", "Andere (vul aan)"]
+  },
+  {
+    id: "q22", nr: 22, deel: "C", type: "radio",
+    title: "Hoe vaak gebruik je AI in je vrije tijd?",
+    hint: "Een antwoord",
+    opts: FREQ.slice()
+  },
+  {
+    id: "q23", nr: 23, deel: "C", type: "checkbox",
+    title: "Waarvoor gebruik je AI vooral priv\u00e9?",
+    hint: "Meerdere antwoorden mogelijk",
+    opts: ["Vragen beantwoorden en dingen opzoeken", "Teksten schrijven en herschrijven", "Iets nieuws leren of een moeilijk onderwerp laten uitleggen", "Plannen: reizen, maaltijden, evenementen, budget", "Beeld, video, muziek of ander creatief werk maken", "Vertalen", "Hulp bij hobby's of klussen", "Gesprek, idee\u00ebn, sparren", "Hulp voor mijn gezin, kinderen of studie", "Andere (vul aan)"]
+  },
+  {
+    id: "q24", nr: 24, deel: "C", type: "longtext",
+    title: "Is er iets dat je thuis vlot met AI doet en op het werk vandaag niet kan?",
+    hint: "Lange tekst"
+  },
+
+  {
+    id: "q25", nr: 25, deel: "D", type: "checkbox", max: 3,
+    title: "Wat houdt je het meest tegen bij het gebruik van AI op het werk?",
+    hint: "Meerdere antwoorden mogelijk, maximaal drie",
+    opts: ["Ik weet niet waar te beginnen of voor welke taken ik het zou gebruiken", "Ik weet niet zeker of ik het resultaat kan vertrouwen", "Ik krijg er moeilijk uit wat ik echt wil", "Bezorgdheid over privacy, veiligheid of compliance", "De regels en richtlijnen bij UCLL zijn me niet duidelijk", "Ik heb geen tijd om te experimenteren", "Ik vrees achterop te raken als ik me niet snel aanpas", "Het voelt veiliger om op mijn huidige doelen te focussen dan mijn manier van werken te herdenken", "Bezorgdheid over academische integriteit en hoe studenten AI gebruiken", "Ik vrees mijn eigen vaardigheden te verliezen als ik erop ga steunen", "De tool heeft geen toegang tot de informatie of de context die nodig is", "Mijn team of leidinggevende gebruikt het niet echt, er is geen voorbeeld om te volgen", "Beperkingen op licenties of toegang", "Andere (vul aan)"],
+    why: "Waarom we dit vragen: de Work Trend Index 2026 stelde vast dat 65% van de mensen die AI gebruiken vreest achterop te raken als ze zich niet snel aanpassen, terwijl 45% zegt dat het veiliger voelt om op de huidige doelen te focussen dan werk te herdenken met AI. Datzelfde onderzoek toont dat organisatorische factoren zoals cultuur, steun van de leidinggevende en talentbeleid meer dan twee keer zoveel impact verklaren als individuele mindset en gedrag."
+  },
+  {
+    id: "q26", nr: 26, deel: "D", type: "scalerows",
+    title: "Hoe ondersteund voel je je?",
+    hint: "Schaal 0 tot 10 per rij",
+    low: "helemaal niet", high: "helemaal wel",
+    rows: ["Het voelt veilig om in mijn team met AI te experimenteren", "Mijn leidinggevende gebruikt AI ook openlijk", "Ik weet wat wel en niet mag bij UCLL", "Ik weet waar ik terechtkan met een vraag over AI", "Nieuwe manieren van werken uitproberen wordt hier gewaardeerd, ook als de eerste poging mislukt"]
+  },
+  {
+    id: "q27", nr: 27, deel: "D", type: "longtext",
+    title: "Is er nog iets dat je in de weg zit?",
+    hint: "Lange tekst"
+  }
+];
+
+var SECTIES = {
+  A1: "A1. Over jou",
+  A2: "A2. AI in je werk vandaag",
+  A3: "A3. Mogelijkheden van Copilot die je wil leren kennen",
+  A4: "A4. De dag zelf",
+  B1: "B1. Waar je tijd naartoe gaat",
+  B2: "B2. Hoe vlot ben je met AI"
+};
+
+/* De delen dragen overal hun letter: op de tab, in de paneelkop en in de export.
+   Nergens wordt een deel nog met een cijfer aangeduid. */
+var DELEN = {
+  A: { badge: "Verplicht", lang: "Deel A. Verplicht", tabTitel: "Deel A. Verplicht", kop: "Verplicht" },
+  B: { badge: "Optioneel, sterk aangeraden", lang: "Deel B. Persoonlijke coaching en opvolging", tabTitel: "Deel B. Persoonlijke coaching", kop: "Persoonlijke coaching en opvolging" },
+  C: { badge: "Optioneel", lang: "Deel C. Optioneel: AI in je priv\u00e9leven", tabTitel: "Deel C. AI in je priv\u00e9leven", kop: "Optioneel: AI in je priv\u00e9leven" },
+  D: { badge: "Optioneel", lang: "Deel D. Optioneel: waar loop je vast", tabTitel: "Deel D. Waar loop je vast", kop: "Optioneel: waar loop je vast" }
+};
+
+var TEKST = {
+  heroTitel: "UCLL Copilot Day",
+  heroOnder: "Vragenlijst vooraf",
+  heroLijn: "Help ons de halve dag af te stemmen op jouw werk",
+  intro: "Deze korte vragenlijst helpt ons de Copilot Day op te bouwen rond wat jij echt doet. Het verplichte deel duurt ongeveer 5 minuten. Er zijn geen foute antwoorden, en dit is geen beoordeling van jou of je team. Je antwoorden bepalen welke demo's we tonen, hoe diep we in elke sessie gaan en welke opvolging het meest nuttig is voor UCLL.",
+  opbouwTitel: "Hoe deze vragenlijst is opgebouwd",
+  opbouw: [
+    ["Deel A, verplicht.", "Ongeveer 5 minuten. Dit hebben we nodig om de agenda samen te stellen."],
+    ["Deel B, persoonlijke coaching en opvolging.", "Vul je dit in, dan bezorgen we je een prompt op maat of een persoonlijk coachingmoment met het team van Microsoft, vertrekkend van jouw eigen proces. Zie het als je persoonlijke huiswerk."],
+    ["Deel C en D, optioneel.", "Hoe meer we weten, hoe scherper het beeld van hoe er bij UCLL gewerkt wordt."]
+  ],
+  waaromTitel: "Waarom deze vragen",
+  waarom: "De vragen hieronder steunen op twee onderzoeken van Microsoft. De Work Trend Index 2026 bevroeg 20.000 medewerkers die AI gebruiken, in 10 landen, en analyseerde productiviteitssignalen uit Microsoft 365. The New Future of Work Reader bundelt gecontroleerde studies en praktijkonderzoek over hoe AI werk verandert. We gebruiken hun bevindingen om de antwoordopties concreet te maken in plaats van algemeen.",
+  bronnen: [
+    { t: "Microsoft Work Trend Index 2026, Agents, human agency, and the opportunity for every organization", u: "https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization" },
+    { t: "The New Future of Work Reader, een onderzoekshub van Microsoft", u: "https://microsoft.github.io/nfw-reader/" }
+  ],
+  agendaTitel: "Agenda",
+  introA: "Dit deel hebben we nodig. Het duurt ongeveer 5 minuten.",
+  kaderB: "Dit deel is je persoonlijke huiswerk en is vrijblijvend. Vul je het in, dan krijg je van het team van Microsoft een prompt op maat of een persoonlijk coachingmoment, vertrekkend van jouw eigen proces. Hoe concreter je antwoord, hoe bruikbaarder wat je terugkrijgt.",
+  introC: "Wat je thuis al doet, zegt vaak meer over je startpunt dan wat je op het werk gebruikt. Dit deel is volledig vrijblijvend.",
+  afsluiting: "Bedankt. Je antwoorden gaan rechtstreeks naar de opbouw van de dag. Niets wordt buiten het organiserende team gedeeld, en geen enkel antwoord wordt tijdens de sessie aan een persoon gekoppeld.",
+  identNoot: "Vul je naam en mailadres in als je de persoonlijke opvolging uit Deel B wil ontvangen.",
+  bewaarNoot: "Je antwoorden worden lokaal bewaard op dit toestel.",
+  exportNoot: "Bezorg het bestand aan je contactpersoon bij Microsoft."
+};
+
+/* Antwoorden lezen, tellen en klaarzetten voor de export.
+   Deze module raakt de DOM niet aan, zodat ze los te testen is. */
+
+var UCLLData = (function () {
+  "use strict";
+
+  function plain(s) { return String(s === null || s === undefined ? "" : s).replace(/\*\*/g, ""); }
+  function isVulAan(s) { return /\(vul aan\)\s*$/.test(plain(s)); }
+  function zonderVulAan(s) { return plain(s).replace(/\s*\(vul aan\)\s*$/, ""); }
+
+  function kortLabel(s) {
+    var i = String(s).indexOf(":");
+    return (i > 0 && i <= 40) ? String(s).slice(0, i).trim() : String(s);
+  }
+
+  function ankerNaam(waarde) {
+    for (var i = 0; i < ANKERS.length; i++) {
+      if (waarde >= ANKERS[i].lo && waarde <= ANKERS[i].hi) {
+        var d = ANKERS[i].t.split("**");
+        return d.length > 1 ? d[1] : "";
+      }
+    }
+    return "";
+  }
+
+  function vraagVan(id) {
+    for (var i = 0; i < QUESTIONS.length; i++) if (QUESTIONS[i].id === id) return QUESTIONS[i];
+    return null;
+  }
+
+  function vragenVan(deel) {
+    return QUESTIONS.filter(function (q) { return q.deel === deel; });
+  }
+
+  function status(state, q) {
+    var v = state.a[q.id], n = 0, i, totaal;
+    switch (q.type) {
+      case "radio": return typeof v === "number" ? "vol" : "leeg";
+      case "checkbox": return (v && v.length) ? "vol" : "leeg";
+      case "longtext": return (typeof v === "string" && v.trim()) ? "vol" : "leeg";
+      case "scale": return typeof v === "number" ? "vol" : "leeg";
+      case "scalerows":
+        for (i = 0; i < q.rows.length; i++) if (v && typeof v[i] === "number") n++;
+        return n === 0 ? "leeg" : (n === q.rows.length ? "vol" : "deels");
+      case "grid":
+        totaal = 0;
+        for (i = 0; i < CAPS.length; i++) {
+          if (CAPS[i].extra) continue;
+          totaal++;
+          if (v && typeof v[i] === "number") n++;
+        }
+        return n === 0 ? "leeg" : (n === totaal ? "vol" : "deels");
+      case "top3":
+        for (i = 0; i < 3; i++) if (v && v[i] && typeof v[i].cap === "number") n++;
+        return n === 0 ? "leeg" : (n === 3 ? "vol" : "deels");
+    }
+    return "leeg";
+  }
+
+  function telVol(state, deel) {
+    return vragenVan(deel).filter(function (q) { return status(state, q) === "vol"; }).length;
+  }
+
+  function openVragenA(state) {
+    var uit = [];
+    vragenVan("A").forEach(function (q) {
+      var s = status(state, q);
+      if (s === "vol") return;
+      uit.push({ nr: q.nr, titel: plain(q.title), deels: s === "deels" });
+    });
+    return uit;
+  }
+
+  /* Bij een schaalvraag benoemt deze regel de uiteinden, zodat een lezer van
+     het exportbestand weet wat een 10 en wat een 0 betekent. Word is de enige
+     uitvoer, dus elk schaalantwoord draagt deze regel mee. */
+  function schaalNoot(q) {
+    if (q.type !== "scale" && q.type !== "scalerows") return "";
+    if (!q.high) return "";
+    return "schaal 0 tot 10, 10 = " + q.high + (q.low ? ", 0 = " + q.low : "");
+  }
+
+  function optieTekst(state, q, i) {
+    if (!q.opts || !q.opts[i]) return "";
+    if (!isVulAan(q.opts[i])) return plain(q.opts[i]);
+    var extra = String(state.a[q.id + "__x" + i] || "").trim();
+    var kaal = zonderVulAan(q.opts[i]);
+    return extra ? kaal + ": " + extra : kaal;
+  }
+
+  function blokkenVoor(state, q) {
+    var v = state.a[q.id], uit = [], i, rij, naam;
+    if (q.type === "radio") {
+      if (typeof v !== "number" || !q.opts[v]) return uit;
+      uit.push({ k: null, v: optieTekst(state, q, v) });
+    } else if (q.type === "checkbox") {
+      if (!v || !v.length) return uit;
+      v.slice().sort(function (a, b) { return a - b; }).forEach(function (i2) {
+        if (q.opts[i2]) uit.push({ k: null, v: optieTekst(state, q, i2) });
+      });
+    } else if (q.type === "longtext") {
+      if (typeof v !== "string" || !v.trim()) return uit;
+      v.split(/\n+/).forEach(function (r) {
+        if (r.trim()) uit.push({ k: null, v: r.trim() });
+      });
+    } else if (q.type === "scale") {
+      if (typeof v !== "number") return uit;
+      naam = q.ankers ? ankerNaam(v) : "";
+      uit.push({ k: null, v: v + "/10" + (naam ? ", " + naam : "") });
+    } else if (q.type === "scalerows") {
+      for (i = 0; i < q.rows.length; i++) {
+        if (!v || typeof v[i] !== "number") continue;
+        uit.push({ k: kortLabel(q.rows[i]), v: v[i] + "/10" });
+      }
+    } else if (q.type === "grid") {
+      for (i = 0; i < CAPS.length; i++) {
+        if (!v || typeof v[i] !== "number") continue;
+        uit.push({ k: CAPS[i].n, v: CAP_LEGEND[v[i] - 1].replace(" = ", ", ") });
+      }
+    } else if (q.type === "top3") {
+      for (i = 0; i < 3; i++) {
+        rij = v && v[i];
+        if (!rij || typeof rij.cap !== "number" || !CAPS[rij.cap]) continue;
+        uit.push({ k: kortLabel(q.rows[i]), v: CAPS[rij.cap].n });
+        if (rij.why && String(rij.why).trim()) uit.push({ k: "Waarom", v: String(rij.why).trim() });
+      }
+    }
+    return uit;
+  }
+
+  function verzamel(state) {
+    var doc = {
+      naam: String(state.naam || "").trim(),
+      mail: String(state.mail || "").trim(),
+      datum: state.datum || "",
+      dept: "",
+      delen: [],
+      map: {},
+      grid4: [],
+      grid3: [],
+      top3: []
+    };
+    var q1 = vraagVan("q1");
+    if (status(state, q1) === "vol") doc.dept = optieTekst(state, q1, state.a.q1);
+
+    ["A", "B", "C", "D"].forEach(function (code) {
+      var items = [];
+      vragenVan(code).forEach(function (q) {
+        var blokken = blokkenVoor(state, q);
+        if (!blokken.length) return;
+        var item = { nr: q.nr, vraag: plain(q.title), blocks: blokken, noot: schaalNoot(q) };
+        items.push(item);
+        doc.map[q.id] = item;
+      });
+      if (items.length) doc.delen.push({ code: code, titel: DELEN[code].lang, items: items });
+    });
+
+    var g = state.a.q8 || {};
+    for (var i = 0; i < CAPS.length; i++) {
+      if (g[i] === 4) doc.grid4.push(CAPS[i].n);
+      else if (g[i] === 3) doc.grid3.push(CAPS[i].n);
+    }
+    var t = state.a.q9 || [];
+    for (var j = 0; j < 3; j++) {
+      if (t[j] && typeof t[j].cap === "number" && CAPS[t[j].cap]) {
+        doc.top3.push({ cap: CAPS[t[j].cap].n, why: String(t[j].why || "").trim() });
+      }
+    }
+    return doc;
+  }
+
+  return {
+    plain: plain,
+    isVulAan: isVulAan,
+    zonderVulAan: zonderVulAan,
+    kortLabel: kortLabel,
+    ankerNaam: ankerNaam,
+    vraagVan: vraagVan,
+    vragenVan: vragenVan,
+    status: status,
+    telVol: telVol,
+    openVragenA: openVragenA,
+    schaalNoot: schaalNoot,
+    optieTekst: optieTekst,
+    blokkenVoor: blokkenVoor,
+    verzamel: verzamel
+  };
+})();
+
+if (typeof module !== "undefined" && module.exports) module.exports = UCLLData;
+
+/* Export naar Word. Volledig lokaal, zonder externe bibliotheken.
+   Deze module raakt de DOM niet aan: data in, bestandsinhoud uit. */
+
+var UCLLExport = (function () {
+  "use strict";
+
+  /* ---------------- gedeelde hulpjes ---------------- */
+
+  function esc(s) {
+    return String(s === null || s === undefined ? "" : s)
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]/g, "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function bestandsnaam(naam) {
+    var t = String(naam || "");
+    if (t.normalize) t = t.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    t = t.replace(/[^A-Za-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+    if (t.length > 40) t = t.slice(0, 40).replace(/_+$/, "");
+    return t || "anoniem";
+  }
+
+  function datumTekst(iso) {
+    if (!iso) return "";
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));
+    if (!m) return String(iso);
+    return m[3] + "/" + m[2] + "/" + m[1];
+  }
+
+  /* ---------------- Word ---------------- */
+
+  var WORD_CSS = [
+    "@page WordSection1 {size:595.3pt 841.9pt; margin:1.8cm 1.9cm 1.8cm 1.9cm;}",
+    "div.WordSection1 {page:WordSection1;}",
+    "body {font-family:'Segoe UI',Calibri,Arial,sans-serif; font-size:10.5pt; color:#333333; line-height:1.35;}",
+    "p {margin:0 0 6pt 0;}",
+    "table {border-collapse:collapse;}",
+    "td {vertical-align:top;}",
+    "td.hdrcell {background:#003469; color:#FFFFFF; padding:18pt 20pt 16pt 20pt;}",
+    "p.hdrtitle {font-size:21pt; font-weight:bold; color:#FFFFFF; margin:0;}",
+    "p.hdrsub {font-size:12.5pt; color:#FFFFFF; margin:5pt 0 0 0;}",
+    "p.hdrline {font-size:9.5pt; color:#FFFFFF; margin:10pt 0 0 0;}",
+    "td.mk {background:#F2FAFE; border:0.75pt solid #DFE5EA; padding:5pt 9pt; width:26%; font-weight:bold; font-size:9.5pt; color:#4D5A66;}",
+    "td.mv {border:0.75pt solid #DFE5EA; padding:5pt 9pt; font-size:10.5pt;}",
+    "p.deel {font-size:13.5pt; font-weight:bold; color:#FFFFFF; background:#E30046; padding:7pt 11pt; margin:20pt 0 10pt 0;}",
+    "p.deelB {background:#003469;}",
+    "p.deelCD {background:#B40A4D;}",
+    "p.qt {font-size:10.5pt; font-weight:bold; color:#B40A4D; margin:11pt 0 3pt 0;}",
+    "p.qn {font-size:8.5pt; color:#5C6570; margin:0 0 4pt 0; padding:0 0 0 10pt;}",
+    "p.qa {font-size:10.5pt; color:#333333; margin:0 0 3pt 0; padding:0 0 0 10pt;}",
+    "p.qa-bullet {font-size:10.5pt; color:#333333; margin:0 0 2pt 0; padding:0 0 0 10pt;}",
+    "td.pk {border:0.75pt solid #DFE5EA; background:#F2FAFE; padding:4pt 8pt; font-size:9.5pt; color:#4D5A66; width:62%;}",
+    "td.pv {border:0.75pt solid #DFE5EA; padding:4pt 8pt; font-size:9.5pt; font-weight:bold; color:#B40A4D; width:38%;}",
+    "p.slot {font-size:8.5pt; color:#5C6570; margin:22pt 0 0 0; border-top:0.75pt solid #DFE5EA; padding-top:7pt;}"
+  ].join("\n");
+
+  function wordBlokken(item) {
+    var out = [], i, b, pairs = [];
+    function spoel() {
+      if (!pairs.length) return;
+      var t = ['<table width="100%">'];
+      for (var j = 0; j < pairs.length; j++) {
+        t.push("<tr><td class=\"pk\" bgcolor=\"#F2FAFE\"><p class=\"qa\">" + esc(pairs[j].k) + "</p></td>" +
+               "<td class=\"pv\"><p class=\"qa\">" + esc(pairs[j].v) + "</p></td></tr>");
+      }
+      t.push("</table>");
+      out.push(t.join(""));
+      pairs = [];
+    }
+    for (i = 0; i < item.blocks.length; i++) {
+      b = item.blocks[i];
+      if (b.k) { pairs.push(b); continue; }
+      spoel();
+      out.push('<p class="qa-bullet">' + esc(b.v) + "</p>");
+    }
+    spoel();
+    return out.join("\n");
+  }
+
+  function buildWordHtml(doc) {
+    var h = [], i, j, d, item, deelKlasse;
+
+    h.push('<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">');
+    h.push("<head>");
+    h.push('<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />');
+    h.push("<title>" + esc("UCLL Copilot Day, antwoorden van " + (doc.naam || "een deelnemer")) + "</title>");
+    // In stukken opgebouwd zodat de reeksen hieronder niet letterlijk in het script staan.
+    h.push("<!" + "--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]--" + ">");
+    h.push('<style type="text/css">' + WORD_CSS + "</style>");
+    h.push("</head>");
+    h.push("<body>");
+    h.push('<div class="WordSection1">');
+
+    h.push('<table width="100%"><tr><td class="hdrcell" bgcolor="#003469">');
+    h.push('<p class="hdrtitle">UCLL Copilot Day</p>');
+    h.push('<p class="hdrsub">Vragenlijst vooraf, ingevulde antwoorden</p>');
+    h.push('<p class="hdrline">' + esc("Help ons de halve dag af te stemmen op jouw werk") + "</p>");
+    h.push("</td></tr></table>");
+
+    h.push('<p class="qa">&#160;</p>');
+    h.push('<table width="100%">');
+    h.push('<tr><td class="mk" bgcolor="#F2FAFE"><p class="qa">Naam</p></td><td class="mv"><p class="qa">' + esc(doc.naam || "Niet ingevuld") + "</p></td></tr>");
+    h.push('<tr><td class="mk" bgcolor="#F2FAFE"><p class="qa">Mailadres</p></td><td class="mv"><p class="qa">' + esc(doc.mail || "Niet ingevuld") + "</p></td></tr>");
+    h.push('<tr><td class="mk" bgcolor="#F2FAFE"><p class="qa">Datum</p></td><td class="mv"><p class="qa">' + esc(datumTekst(doc.datum) || "Niet ingevuld") + "</p></td></tr>");
+    h.push("</table>");
+
+    if (!doc.delen.length) {
+      h.push('<p class="qt">Er zijn nog geen antwoorden ingevuld.</p>');
+    }
+
+    for (i = 0; i < doc.delen.length; i++) {
+      d = doc.delen[i];
+      deelKlasse = d.code === "B" ? " deelB" : (d.code === "C" || d.code === "D" ? " deelCD" : "");
+      h.push('<p class="deel' + deelKlasse + '">' + esc(d.titel) + "</p>");
+      for (j = 0; j < d.items.length; j++) {
+        item = d.items[j];
+        h.push('<p class="qt">' + esc(item.nr + ". " + item.vraag) + "</p>");
+        if (item.noot) h.push('<p class="qn">' + esc(item.noot) + "</p>");
+        h.push(wordBlokken(item));
+      }
+    }
+
+    h.push('<p class="slot">' + esc("Bezorg het bestand aan je contactpersoon bij Microsoft.") + "</p>");
+    h.push("</div>");
+    h.push("</body>");
+    h.push("</html>");
+    return h.join("\n");
+  }
+
+  return {
+    buildWordHtml: buildWordHtml,
+    bestandsnaam: bestandsnaam,
+    datumTekst: datumTekst
+  };
+})();
+
+if (typeof module !== "undefined" && module.exports) module.exports = UCLLExport;
+
+/* Opbouw en gedrag van de vragenlijst. Alles draait lokaal in de browser. */
+
+(function () {
+  "use strict";
+
+  var SLEUTEL = "ucll-copilot-day-vragenlijst-v1";
+
+  /* Stempel van deze build. Hij wordt naast de antwoorden bewaard en bij het
+     laden vergeleken met de stempel in dit bestand. Verschillen ze, dan horen
+     de bewaarde antwoorden bij een vorige versie van de vragenlijst: we gooien
+     ze weg en beginnen schoon. Zo opent een vers aangemaakt bestand altijd
+     leeg, ook in een browser die nog antwoorden voor dezelfde locatie bijhoudt.
+     Wie de vragenlijst opnieuw aanmaakt, zet hier een nieuwe waarde. */
+  var BOUW = "2026.10.01.1";
+
+  /* De delen heten overal Deel A tot Deel D, dus draagt ook het rondje de letter. */
+  var TABS = [
+    { code: "A", accent: "red" },
+    { code: "B", accent: "navy" },
+    { code: "C", accent: "deep" },
+    { code: "D", accent: "deep" }
+  ];
+
+  var state = { naam: "", mail: "", datum: "", tab: "A", a: {} };
+  var bewaarKan = true;
+  var laatsteFocus = null;
+
+  /* ---------------- kleine hulpjes ---------------- */
+
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag), k;
+    if (attrs) {
+      for (k in attrs) {
+        if (!Object.prototype.hasOwnProperty.call(attrs, k)) continue;
+        if (attrs[k] === null || attrs[k] === undefined || attrs[k] === false) continue;
+        if (k === "class") n.className = attrs[k];
+        else if (k === "text") n.textContent = attrs[k];
+        else if (k === "value") n.value = attrs[k];
+        else if (k === "checked") n.checked = !!attrs[k];
+        else n.setAttribute(k, attrs[k] === true ? "" : attrs[k]);
+      }
+    }
+    if (kids !== undefined && kids !== null) voegBij(n, kids);
+    return n;
+  }
+
+  function voegBij(n, kids) {
+    if (!Array.isArray(kids)) kids = [kids];
+    for (var i = 0; i < kids.length; i++) {
+      var k = kids[i];
+      if (k === null || k === undefined || k === false) continue;
+      n.appendChild(typeof k === "string" || typeof k === "number" ? document.createTextNode(String(k)) : k);
+    }
+    return n;
+  }
+
+  function rich(s) {
+    var delen = String(s).split("**"), out = [], i;
+    for (i = 0; i < delen.length; i++) {
+      if (!delen[i]) continue;
+      out.push(i % 2 ? el("strong", { text: delen[i] }) : document.createTextNode(delen[i]));
+    }
+    return out;
+  }
+
+  /* De gedeelde, DOM-vrije laag levert lezen, tellen en omzetten. */
+  var plain = UCLLData.plain;
+  var isVulAan = UCLLData.isVulAan;
+  var zonderVulAan = UCLLData.zonderVulAan;
+  var kortLabel = UCLLData.kortLabel;
+  var vragenVan = UCLLData.vragenVan;
+  function status(q) { return UCLLData.status(state, q); }
+  function telVol(deel) { return UCLLData.telVol(state, deel); }
+  function openVragenA() { return UCLLData.openVragenA(state); }
+  function verzamel() { return UCLLData.verzamel(state); }
+
+  /* ---------------- opslag ---------------- */
+
+  function bewaar() {
+    if (!bewaarKan) return;
+    try {
+      window.localStorage.setItem(SLEUTEL, JSON.stringify({
+        bouw: BOUW,
+        naam: state.naam,
+        mail: state.mail,
+        datum: state.datum,
+        tab: state.tab,
+        a: state.a
+      }));
+    } catch (e) {
+      bewaarKan = false;
+      zetBewaarNoot();
+    }
+  }
+
+  var bewaarTimer = null;
+  function bewaarStraks() {
+    if (bewaarTimer) window.clearTimeout(bewaarTimer);
+    bewaarTimer = window.setTimeout(bewaar, 180);
+  }
+
+  function vergeet() {
+    try { window.localStorage.removeItem(SLEUTEL); } catch (e) { /* niets */ }
+  }
+
+  function laad() {
+    var ruw, d;
+    try {
+      ruw = window.localStorage.getItem(SLEUTEL);
+    } catch (e) {
+      bewaarKan = false;
+      return;
+    }
+    if (!ruw) return;
+
+    try { d = JSON.parse(ruw); } catch (e) { d = null; }
+
+    /* Alleen antwoorden van precies deze build komen terug. Alles daarvoor is
+       van een oudere vragenlijst en wordt gewist, zodat dit bestand leeg opent. */
+    if (!d || typeof d !== "object" || d.bouw !== BOUW) {
+      vergeet();
+      return;
+    }
+
+    state.naam = typeof d.naam === "string" ? d.naam : "";
+    state.mail = typeof d.mail === "string" ? d.mail : "";
+    state.datum = typeof d.datum === "string" ? d.datum : "";
+    state.tab = /^[ABCD]$/.test(d.tab) ? d.tab : "A";
+    state.a = (d.a && typeof d.a === "object") ? d.a : {};
+  }
+
+  function zetBewaarNoot() {
+    var n = document.getElementById("bewaarNoot");
+    if (!n) return;
+    n.textContent = bewaarKan
+      ? TEKST.bewaarNoot
+      : "Bewaren op dit toestel lukt niet in deze browser. Hou de pagina open tot je je antwoorden hebt gedownload.";
+  }
+
+  /* ---------------- besturing per vraagtype ---------------- */
+
+  function keuzeBlok(q) {
+    var host = el("div", { class: "opts" + (q.opts.length >= 8 ? " cols2" : "") });
+    var meervoud = q.type === "checkbox";
+    var melding = null;
+
+    if (q.max) {
+      melding = el("div", {
+        class: "limit-msg", role: "status", hidden: true,
+        text: "Je kan maximaal " + (q.max === 3 ? "drie" : q.max) + " antwoorden kiezen. Vink er eerst een uit."
+      });
+    }
+
+    function gekozen() {
+      var v = state.a[q.id];
+      if (meervoud) return Array.isArray(v) ? v : [];
+      return typeof v === "number" ? [v] : [];
+    }
+
+    function ververs() {
+      var sel = gekozen(), vol = q.max && sel.length >= q.max;
+      host.querySelectorAll(".optwrap").forEach(function (wrap) {
+        var i = Number(wrap.getAttribute("data-i"));
+        var aan = sel.indexOf(i) !== -1;
+        var lab = wrap.querySelector(".opt");
+        var inp = wrap.querySelector("input[type=radio],input[type=checkbox]");
+        var vul = wrap.querySelector(".fill");
+        inp.checked = aan;
+        lab.classList.toggle("sel", aan);
+        lab.classList.toggle("blocked", !!(vol && !aan));
+        if (vul) vul.hidden = !aan;
+      });
+    }
+
+    q.opts.forEach(function (opt, i) {
+      var inputId = q.id + "_o" + i;
+      var inp = el("input", {
+        type: meervoud ? "checkbox" : "radio",
+        name: q.id, id: inputId, value: String(i)
+      });
+      var lab = el("label", { class: "opt", for: inputId }, [
+        inp, el("span", { class: "opt-txt" }, rich(opt))
+      ]);
+      var wrap = el("div", { class: "optwrap", "data-i": String(i) }, lab);
+
+      if (isVulAan(opt)) {
+        var vulId = q.id + "_v" + i;
+        var vulInp = el("input", {
+          type: "text", id: vulId, maxlength: "160",
+          value: String(state.a[q.id + "__x" + i] || ""),
+          placeholder: "Vul aan",
+          "aria-label": "Vul aan bij " + zonderVulAan(opt)
+        });
+        vulInp.addEventListener("input", function () {
+          state.a[q.id + "__x" + i] = vulInp.value;
+          bewaarStraks();
+        });
+        wrap.appendChild(el("div", { class: "fill", hidden: true }, vulInp));
+      }
+
+      inp.addEventListener("change", function () {
+        if (meervoud) {
+          var lijst = gekozen().slice();
+          var p = lijst.indexOf(i);
+          if (inp.checked && p === -1) {
+            if (q.max && lijst.length >= q.max) {
+              inp.checked = false;
+              if (melding) {
+                melding.hidden = false;
+                if (melding._t) window.clearTimeout(melding._t);
+                melding._t = window.setTimeout(function () { melding.hidden = true; }, 5000);
+              }
+              return;
+            }
+            lijst.push(i);
+          } else if (!inp.checked && p !== -1) {
+            lijst.splice(p, 1);
+          }
+          state.a[q.id] = lijst;
+          if (melding && lijst.length < (q.max || 99)) melding.hidden = true;
+        } else {
+          state.a[q.id] = i;
+        }
+        ververs();
+        var vulveld = wrap.querySelector(".fill input");
+        if (vulveld && inp.checked) vulveld.focus();
+        naVerandering();
+      });
+
+      host.appendChild(wrap);
+    });
+
+    ververs();
+    return melding ? el("div", {}, [host, melding]) : host;
+  }
+
+  function langeTekst(q) {
+    var ta = el("textarea", {
+      id: q.id + "_t", rows: "4", maxlength: "4000",
+      "aria-labelledby": "qt-" + q.id,
+      value: typeof state.a[q.id] === "string" ? state.a[q.id] : ""
+    });
+    var teller = el("div", { class: "ta-foot", text: "" });
+
+    function groei() {
+      ta.style.removeProperty("block-size");
+      ta.style.setProperty("block-size", (ta.scrollHeight + 2) + "px");
+      teller.textContent = ta.value.length + " tekens";
+    }
+    ta.addEventListener("input", function () {
+      state.a[q.id] = ta.value;
+      groei();
+      naVerandering();
+    });
+    window.setTimeout(groei, 0);
+    return el("div", {}, [ta, teller]);
+  }
+
+  function schuifRij(q, idx, labelTekst) {
+    var isRij = idx !== null;
+    var labelId = q.id + "_l" + (isRij ? idx : 0);
+    var rij = el("div", { class: "slider" });
+    var label = el("span", { class: "s-label", id: labelId }, rich(labelTekst));
+    var huidig = isRij ? (state.a[q.id] && state.a[q.id][idx]) : state.a[q.id];
+    var aangeraakt = typeof huidig === "number";
+
+    /* De betekenis van 0 en van 10 staat onder elke regelaar, ook op elke rij van
+       een vraag met meerdere rijen, en wordt meegelezen door een schermlezer. */
+    var uiteindenId = q.id + "_u" + (isRij ? idx : 0);
+    var uiteinden = el("div", { class: "ends", id: uiteindenId }, [
+      el("span", {}, [el("b", { text: "0" }), " = " + q.low]),
+      el("span", {}, [el("b", { text: "10" }), " = " + q.high])
+    ]);
+
+    var inp = el("input", {
+      type: "range", min: "0", max: "10", step: "1",
+      value: String(aangeraakt ? huidig : 5),
+      "aria-labelledby": labelId,
+      "aria-describedby": uiteindenId
+    });
+    var getal = el("span", { class: "s-val", text: aangeraakt ? String(huidig) : "?" });
+    var bij = el("span", { class: "s-cap", text: aangeraakt ? "van 10" : "niet ingevuld" });
+    var lees = el("div", { class: "s-read" }, [getal, bij]);
+    var wis = el("button", { type: "button", class: "s-clear", hidden: !aangeraakt, text: "wissen" });
+
+    var ctrl = el("div", { class: "s-ctrl" }, [
+      inp,
+      el("div", { class: "ticks", "aria-hidden": "true" }, [
+        el("span", { text: "0" }), el("span", { text: "5" }), el("span", { text: "10" })
+      ]),
+      uiteinden
+    ]);
+
+    var ankerLijst = null;
+    if (q.ankers) {
+      ankerLijst = el("ul", { class: "ankers" });
+      ANKERS.forEach(function (a) { ankerLijst.appendChild(el("li", {}, rich(a.t))); });
+    }
+
+    function toon(waarde, ingevuld) {
+      rij.classList.toggle("untouched", !ingevuld);
+      getal.textContent = ingevuld ? String(waarde) : "?";
+      bij.textContent = ingevuld ? "van 10" : "niet ingevuld";
+      inp.setAttribute("aria-valuetext", ingevuld ? waarde + " van 10" : "nog niet ingevuld");
+      wis.hidden = !ingevuld;
+      if (ankerLijst) {
+        var kinderen = ankerLijst.children;
+        for (var i = 0; i < kinderen.length; i++) {
+          kinderen[i].classList.toggle("on", ingevuld && waarde >= ANKERS[i].lo && waarde <= ANKERS[i].hi);
+        }
+      }
+    }
+
+    function zet(waarde) {
+      if (isRij) {
+        if (!state.a[q.id] || typeof state.a[q.id] !== "object") state.a[q.id] = {};
+        state.a[q.id][idx] = waarde;
+      } else {
+        state.a[q.id] = waarde;
+      }
+    }
+
+    inp.addEventListener("input", function () {
+      var w = Number(inp.value);
+      zet(w);
+      toon(w, true);
+      naVerandering();
+    });
+
+    wis.addEventListener("click", function () {
+      if (isRij) { if (state.a[q.id]) delete state.a[q.id][idx]; }
+      else { delete state.a[q.id]; }
+      inp.value = "5";
+      toon(5, false);
+      inp.focus();
+      naVerandering();
+    });
+
+    voegBij(rij, [label, ctrl, lees, wis]);
+    toon(aangeraakt ? huidig : 5, aangeraakt);
+    return ankerLijst ? el("div", {}, [rij, ankerLijst]) : rij;
+  }
+
+  function schaalBlok(q) {
+    if (q.type === "scale") return schuifRij(q, null, q.title);
+    var host = el("div", {});
+    q.rows.forEach(function (r, i) { host.appendChild(schuifRij(q, i, r)); });
+    return host;
+  }
+
+  function capTabel(q, vanaf, tot) {
+    var tbody = el("tbody");
+    for (var i = vanaf; i < tot; i++) {
+      (function (i) {
+        var cap = CAPS[i];
+        var tr = el("tr", { "data-cap": String(i) });
+        tr.appendChild(el("td", { class: "cap-cell" }, el("span", { class: "cap-n", text: cap.n })));
+        tr.appendChild(el("td", { class: "desc cap-d", text: cap.d }));
+        for (var k = 1; k <= 4; k++) {
+          (function (k) {
+            var id = q.id + "_c" + i + "_" + k;
+            var inp = el("input", {
+              type: "radio", name: q.id + "_c" + i, id: id, value: String(k),
+              "aria-label": cap.n + ", " + CAP_LEGEND[k - 1],
+              checked: state.a[q.id] && state.a[q.id][i] === k
+            });
+            inp.addEventListener("change", function () {
+              if (!state.a[q.id] || typeof state.a[q.id] !== "object") state.a[q.id] = {};
+              state.a[q.id][i] = k;
+              tr.classList.add("rated");
+              naVerandering();
+            });
+            tr.appendChild(el("td", { class: "num" },
+              el("label", { for: id }, [inp, el("span", { class: "numlbl", text: String(k) })])));
+          })(k);
+        }
+        if (state.a[q.id] && state.a[q.id][i]) tr.classList.add("rated");
+        tbody.appendChild(tr);
+      })(i);
+    }
+    var kop = el("thead", {}, el("tr", {}, [
+      el("th", { scope: "col", text: "Mogelijkheid" }),
+      el("th", { scope: "col", text: "Wat het doet" }),
+      el("th", { scope: "col", class: "num", text: "1" }),
+      el("th", { scope: "col", class: "num", text: "2" }),
+      el("th", { scope: "col", class: "num", text: "3" }),
+      el("th", { scope: "col", class: "num", text: "4" })
+    ]));
+    return el("div", { class: "capwrap" }, el("table", { class: "cap" }, [kop, tbody]));
+  }
+
+  function gridBlok(q) {
+    var legende = el("div", { class: "legend" });
+    CAP_LEGEND.forEach(function (t) { legende.appendChild(el("span", { text: t })); });
+    var teller = el("p", { class: "gridcount", id: "gridTeller", text: "" });
+    var hoofd = CAPS.filter(function (c) { return !c.extra; }).length;
+    return el("div", {}, [
+      legende, teller,
+      capTabel(q, 0, hoofd),
+      el("p", { class: "grid-sub", text: q.extraHeading }),
+      capTabel(q, hoofd, CAPS.length)
+    ]);
+  }
+
+  function top3Blok(q) {
+    var host = el("div", {});
+    q.rows.forEach(function (rijLabel, i) {
+      var labelId = q.id + "_l" + i;
+      var huidig = (state.a[q.id] && state.a[q.id][i]) || {};
+      var sel = el("select", { id: q.id + "_s" + i, "aria-labelledby": labelId });
+      sel.appendChild(el("option", { value: "", text: "Kies een mogelijkheid" }));
+      CAPS.forEach(function (c, ci) {
+        sel.appendChild(el("option", { value: String(ci), text: c.n, selected: huidig.cap === ci }));
+      });
+      var waarom = el("input", {
+        type: "text", maxlength: "240", placeholder: "Waarom",
+        value: String(huidig.why || ""),
+        "aria-label": "Waarom, " + kortLabel(rijLabel)
+      });
+
+      function zet() {
+        if (!Array.isArray(state.a[q.id])) state.a[q.id] = [];
+        state.a[q.id][i] = {
+          cap: sel.value === "" ? null : Number(sel.value),
+          why: waarom.value
+        };
+        naVerandering();
+      }
+      sel.addEventListener("change", zet);
+      waarom.addEventListener("input", zet);
+
+      host.appendChild(el("div", { class: "top3row" }, [
+        el("span", { class: "t3lab", id: labelId, text: rijLabel }),
+        el("div", { class: "t3grid" }, [sel, waarom])
+      ]));
+    });
+    return host;
+  }
+
+  function vraagBlok(q) {
+    switch (q.type) {
+      case "radio":
+      case "checkbox": return keuzeBlok(q);
+      case "longtext": return langeTekst(q);
+      case "scale":
+      case "scalerows": return schaalBlok(q);
+      case "grid": return gridBlok(q);
+      case "top3": return top3Blok(q);
+    }
+    return el("div", {});
+  }
+
+  function waaromBlok(tekst) {
+    var i = tekst.indexOf(": ");
+    var kop = i > 0 ? tekst.slice(0, i + 1) : "";
+    var rest = i > 0 ? tekst.slice(i + 2) : tekst;
+    return el("p", { class: "why" }, [el("b", { text: kop }), " ", rest]);
+  }
+
+  function vraagKaart(q) {
+    var kaart = el("section", { class: "q", id: "vraag-" + q.nr, "aria-labelledby": "qt-" + q.id });
+    kaart.appendChild(el("div", { class: "q-head" }, [
+      el("span", { class: "q-nr", "aria-hidden": "true", text: String(q.nr) }),
+      el("div", { class: "q-head-txt" }, [
+        el("h4", { class: "q-title", id: "qt-" + q.id }, rich(q.title)),
+        el("span", { class: "q-hint", text: q.hint })
+      ])
+    ]));
+    if (q.lead) kaart.appendChild(el("p", { class: "q-lead", text: q.lead }));
+    if (q.help) kaart.appendChild(el("p", { class: "q-help", text: q.help }));
+    kaart.appendChild(el("div", { class: "q-body" }, vraagBlok(q)));
+    if (q.why) kaart.appendChild(waaromBlok(q.why));
+    return kaart;
+  }
+
+  /* ---------------- pagina-opbouw ---------------- */
+
+  function bouwIntro() {
+    var host = document.getElementById("intro");
+
+    var opbouw = el("ul", {});
+    TEKST.opbouw.forEach(function (r) {
+      opbouw.appendChild(el("li", {}, [el("strong", { text: r[0] }), " " + r[1]]));
+    });
+
+    var bronnen = el("ul", { class: "bronnen" });
+    TEKST.bronnen.forEach(function (b) {
+      bronnen.appendChild(el("li", {}, el("a", {
+        href: b.u, target: "_blank", rel: "noopener noreferrer", text: b.t
+      })));
+    });
+
+    var rijen = el("tbody");
+    AGENDA.forEach(function (r) {
+      rijen.appendChild(el("tr", {}, [el("td", { text: r[0] }), el("td", { text: r[1] })]));
+    });
+
+    host.appendChild(el("section", { class: "card card-lead", "aria-labelledby": "introKop" }, [
+      el("h2", { id: "introKop", text: "Over deze vragenlijst" }),
+      el("p", { class: "q-lead", text: TEKST.intro }),
+      el("div", { class: "box box-red" }, [
+        el("h3", { text: TEKST.opbouwTitel }), opbouw
+      ]),
+      el("div", { class: "box box-deep" }, [
+        el("h3", { text: TEKST.waaromTitel }),
+        el("p", { text: TEKST.waarom }),
+        bronnen
+      ]),
+      el("h3", { class: "agenda-kop", text: TEKST.agendaTitel }),
+      el("div", { class: "tbl-wrap" }, el("table", { class: "agenda" }, [
+        el("thead", {}, el("tr", {}, [
+          el("th", { scope: "col", text: "Tijdstip" }),
+          el("th", { scope: "col", text: "Sessie" })
+        ])),
+        rijen
+      ]))
+    ]));
+
+    var naam = el("input", { type: "text", id: "idNaam", autocomplete: "name", value: state.naam, maxlength: "120" });
+    var mail = el("input", { type: "email", id: "idMail", autocomplete: "email", value: state.mail, maxlength: "160" });
+    var datum = el("input", { type: "date", id: "idDatum", value: state.datum });
+
+    naam.addEventListener("input", function () { state.naam = naam.value; bewaarStraks(); });
+    mail.addEventListener("input", function () { state.mail = mail.value; bewaarStraks(); });
+    datum.addEventListener("input", function () { state.datum = datum.value; bewaarStraks(); });
+
+    host.appendChild(el("section", { class: "card", "aria-labelledby": "identKop" }, [
+      el("h2", { id: "identKop", text: "Wie vult dit in?" }),
+      el("p", { class: "q-lead", text: TEKST.identNoot }),
+      el("div", { class: "ident-grid" }, [
+        el("div", { class: "field" }, [
+          el("label", { for: "idNaam" }, ["Naam ", el("span", { class: "opt-tag", text: "nodig voor Deel B" })]),
+          naam
+        ]),
+        el("div", { class: "field" }, [
+          el("label", { for: "idMail" }, ["Mailadres ", el("span", { class: "opt-tag", text: "nodig voor Deel B" })]),
+          mail
+        ]),
+        el("div", { class: "field" }, [
+          el("label", { for: "idDatum", text: "Datum" }),
+          datum
+        ])
+      ])
+    ]));
+  }
+
+  function bouwTabs() {
+    var host = document.getElementById("tablist");
+    TABS.forEach(function (t) {
+      var knop = el("button", {
+        type: "button", role: "tab", id: "tab-" + t.code,
+        "aria-controls": "panel-" + t.code,
+        "aria-selected": String(t.code === state.tab),
+        tabindex: t.code === state.tab ? "0" : "-1",
+        "data-accent": t.accent, "data-deel": t.code
+      }, [
+        el("span", { class: "tab-top" }, [
+          el("span", { class: "tab-nr", "aria-hidden": "true", text: t.code }),
+          el("span", { class: "tab-title", text: DELEN[t.code].tabTitel }),
+          el("span", { class: "tab-badge", text: DELEN[t.code].badge })
+        ]),
+        el("span", { class: "tab-count", id: "count-" + t.code, text: "" })
+      ]);
+      knop.addEventListener("click", function () { kiesTab(t.code, true); });
+      host.appendChild(knop);
+    });
+
+    host.addEventListener("keydown", function (e) {
+      var i = TABS.map(function (t) { return t.code; }).indexOf(state.tab), n = null;
+      if (e.key === "ArrowRight") n = (i + 1) % TABS.length;
+      else if (e.key === "ArrowLeft") n = (i - 1 + TABS.length) % TABS.length;
+      else if (e.key === "Home") n = 0;
+      else if (e.key === "End") n = TABS.length - 1;
+      if (n === null) return;
+      e.preventDefault();
+      kiesTab(TABS[n].code, false);
+      document.getElementById("tab-" + TABS[n].code).focus();
+    });
+  }
+
+  function deelKop(code) {
+    var kop = el("div", { class: "part-head" }, [
+      el("p", { class: "eyebrow", text: "Deel " + code }),
+      el("h2", { text: DELEN[code].kop })
+    ]);
+    if (code === "A") kop.appendChild(el("p", { class: "sub", text: TEKST.introA }));
+    if (code === "C") kop.appendChild(el("p", { class: "sub", text: TEKST.introC }));
+    return kop;
+  }
+
+  function bouwPanelen() {
+    var host = document.getElementById("panels");
+    TABS.forEach(function (t) {
+      var code = t.code;
+      var paneel = el("section", {
+        class: "panel deel-" + code, role: "tabpanel", id: "panel-" + code,
+        "aria-labelledby": "tab-" + code, tabindex: "0",
+        hidden: code !== state.tab
+      });
+      paneel.appendChild(deelKop(code));
+
+      if (code === "B") {
+        paneel.appendChild(el("div", { class: "card box-navy" }, [
+          el("h3", { text: "Je persoonlijke huiswerk" }),
+          el("p", { text: TEKST.kaderB })
+        ]));
+      }
+      if (code === "A") {
+        paneel.appendChild(el("div", { class: "card progress-card" }, [
+          el("span", { class: "ptext" }, ["Voortgang Deel A: ", el("span", { id: "progTxt", text: "" })]),
+          el("span", { class: "pbar", id: "pbar", role: "presentation" }, el("i", {}))
+        ]));
+      }
+
+      var huidigeSectie = null;
+      vragenVan(code).forEach(function (q) {
+        if (q.sec && q.sec !== huidigeSectie) {
+          huidigeSectie = q.sec;
+          paneel.appendChild(el("div", { class: "sec-head" }, el("h3", { text: SECTIES[q.sec] })));
+        }
+        paneel.appendChild(vraagKaart(q));
+      });
+
+      host.appendChild(paneel);
+    });
+  }
+
+  function bouwOnderaan() {
+    var host = document.getElementById("onderaan");
+
+    var wordKnop = el("button", { type: "button", class: "btn btn-primary" }, "Download als Word");
+    var wisKnop = el("button", { type: "button", class: "btn-quiet", text: "Alles wissen" });
+
+    wordKnop.addEventListener("click", start);
+    wisKnop.addEventListener("click", allesWissen);
+
+    host.appendChild(el("section", { class: "actions", "aria-labelledby": "exportKop" }, [
+      el("h2", { id: "exportKop", text: "Je antwoorden downloaden" }),
+      el("p", { class: "sub", text: TEKST.exportNoot }),
+      el("div", { class: "btnrow" }, [wordKnop]),
+      el("div", { class: "save-note" }, [
+        el("span", { class: "dot", "aria-hidden": "true" }),
+        el("span", { id: "bewaarNoot", text: TEKST.bewaarNoot }),
+        wisKnop
+      ])
+    ]));
+
+    host.appendChild(el("section", { class: "closing", "aria-labelledby": "slotKop" }, [
+      el("h2", { id: "slotKop", text: "Tot slot" }),
+      el("p", { text: TEKST.afsluiting })
+    ]));
+  }
+
+  /* ---------------- tabs en voortgang ---------------- */
+
+  function kiesTab(code, scroll) {
+    state.tab = code;
+    TABS.forEach(function (t) {
+      var knop = document.getElementById("tab-" + t.code);
+      var paneel = document.getElementById("panel-" + t.code);
+      var aan = t.code === code;
+      knop.setAttribute("aria-selected", String(aan));
+      knop.setAttribute("tabindex", aan ? "0" : "-1");
+      paneel.hidden = !aan;
+    });
+    if (scroll) naarTabTop();
+    bewaarStraks();
+  }
+
+  function naarTabTop() {
+    var bar = document.querySelector(".tabbar");
+    if (!bar) return;
+    var y = bar.getBoundingClientRect().top + window.pageYOffset;
+    if (window.pageYOffset > y) window.scrollTo(0, y);
+  }
+
+  function naVerandering() {
+    ververs();
+    bewaarStraks();
+  }
+
+  function ververs() {
+    TABS.forEach(function (t) {
+      var totaal = vragenVan(t.code).length;
+      var n = telVol(t.code);
+      var span = document.getElementById("count-" + t.code);
+      if (span) {
+        span.textContent = n + "/" + totaal + " beantwoord";
+        span.classList.toggle("done", n === totaal);
+      }
+      var knop = document.getElementById("tab-" + t.code);
+      if (knop) {
+        knop.setAttribute("aria-label", DELEN[t.code].tabTitel + ", " +
+          DELEN[t.code].badge + ", " + n + " van " + totaal + " beantwoord");
+      }
+    });
+
+    var totA = vragenVan("A").length, nA = telVol("A");
+    var txt = document.getElementById("progTxt");
+    if (txt) txt.textContent = nA + " van " + totA + " beantwoord";
+    var bar = document.getElementById("pbar");
+    if (bar) {
+      bar.firstChild.style.setProperty("inline-size", Math.round((nA / totA) * 100) + "%");
+      bar.classList.toggle("full", nA === totA);
+    }
+
+    var gt = document.getElementById("gridTeller");
+    if (gt) {
+      var g = state.a.q8 || {}, n8 = 0, t8 = 0;
+      for (var i = 0; i < CAPS.length; i++) {
+        if (CAPS[i].extra) continue;
+        t8++;
+        if (typeof g[i] === "number") n8++;
+      }
+      gt.textContent = n8 + "/" + t8 + " beoordeeld";
+    }
+  }
+
+  /* ---------------- dialoog en melding ---------------- */
+
+  function toon(bericht) {
+    var t = document.getElementById("toast");
+    t.textContent = bericht;
+    t.classList.add("on");
+    if (t._t) window.clearTimeout(t._t);
+    t._t = window.setTimeout(function () { t.classList.remove("on"); }, 3600);
+  }
+
+  function sluitDialoog() {
+    document.getElementById("dlg").hidden = true;
+    if (laatsteFocus && laatsteFocus.focus) laatsteFocus.focus();
+  }
+
+  function opendDialoog(titel, inhoud, knoppen) {
+    var dlg = document.getElementById("dlg");
+    var kop = document.getElementById("dlgKop");
+    var body = document.getElementById("dlgBody");
+    var rij = document.getElementById("dlgBtns");
+    laatsteFocus = document.activeElement;
+    kop.textContent = titel;
+    body.textContent = "";
+    voegBij(body, inhoud);
+    rij.textContent = "";
+    knoppen.forEach(function (k) {
+      var b = el("button", { type: "button", class: "btn " + (k.primair ? "btn-primary" : "btn-ghost"), text: k.tekst });
+      b.addEventListener("click", function () { sluitDialoog(); k.actie(); });
+      rij.appendChild(b);
+    });
+    dlg.hidden = false;
+    var eerste = rij.querySelector("button");
+    if (eerste) eerste.focus();
+  }
+
+  function dialoogToetsen(e) {
+    var dlg = document.getElementById("dlg");
+    if (dlg.hidden) return;
+    if (e.key === "Escape") { e.preventDefault(); sluitDialoog(); return; }
+    if (e.key !== "Tab") return;
+    var f = dlg.querySelectorAll("button");
+    if (!f.length) return;
+    var eerste = f[0], laatste = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === eerste) { e.preventDefault(); laatste.focus(); }
+    else if (!e.shiftKey && document.activeElement === laatste) { e.preventDefault(); eerste.focus(); }
+  }
+
+  /* ---------------- export ---------------- */
+
+  function haalOp() {
+    var doc = verzamel();
+    var basis = "UCLL_Copilot_Day_Antwoorden_" + UCLLExport.bestandsnaam(doc.naam);
+    downloadBlob(
+      new Blob(["\ufeff" + UCLLExport.buildWordHtml(doc)], { type: "application/msword" }),
+      basis + ".doc"
+    );
+    toon("Het bestand voor Word is gedownload.");
+  }
+
+  function downloadBlob(blob, naam) {
+    var url = window.URL.createObjectURL(blob);
+    var a = el("a", { href: url, download: naam, class: "vh" });
+    document.body.appendChild(a);
+    a.click();
+    window.setTimeout(function () {
+      if (a.parentNode) a.parentNode.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 2000);
+  }
+
+  function start() {
+    var open = openVragenA();
+    if (!open.length) { haalOp(); return; }
+
+    var lijst = el("ul", {});
+    open.forEach(function (o) {
+      lijst.appendChild(el("li", { text: "Vraag " + o.nr + ", " + plain(o.titel) + (o.deels ? " (nog niet volledig)" : "") }));
+    });
+    var nummers = open.map(function (o) { return o.nr; }).join(", ");
+
+    opendDialoog(
+      "Deel A is nog niet volledig",
+      [
+        el("p", { text: "Je kan gerust verder gaan. Je antwoorden blijven bewaard en het bestand wordt gewoon aangemaakt met wat je al hebt ingevuld." }),
+        el("div", { class: "open-list" }, [
+          "Nog open: vraag " + nummers,
+          lijst
+        ])
+      ],
+      [
+        { tekst: "Toch downloaden", primair: true, actie: haalOp },
+        {
+          tekst: "Terug naar Deel A", primair: false, actie: function () {
+            kiesTab("A", false);
+            var doel = document.getElementById("vraag-" + open[0].nr);
+            if (doel) {
+              doel.scrollIntoView({ block: "center" });
+              var eerste = doel.querySelector("input, textarea, select, button");
+              if (eerste) eerste.focus();
+            }
+          }
+        }
+      ]
+    );
+  }
+
+  function allesWissen() {
+    if (!window.confirm("Weet je zeker dat je alle antwoorden op dit toestel wil wissen?\n\nJe naam, mailadres en alle ingevulde antwoorden worden definitief verwijderd. Je kan ze daarna niet meer herstellen.")) return;
+    state = { naam: "", mail: "", datum: vandaag(), tab: "A", a: {} };
+    vergeet();
+    herbouw();
+    toon("Alle antwoorden zijn gewist.");
+  }
+
+  function vandaag() {
+    var d = new Date();
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+  }
+
+  function herbouw() {
+    ["intro", "tablist", "panels", "onderaan"].forEach(function (id) {
+      document.getElementById(id).textContent = "";
+    });
+    bouwAlles();
+  }
+
+  function bouwAlles() {
+    bouwIntro();
+    bouwTabs();
+    bouwPanelen();
+    bouwOnderaan();
+    zetBewaarNoot();
+    ververs();
+  }
+
+  /* ---------------- start ---------------- */
+
+  function init() {
+    laad();
+    if (!state.datum) state.datum = vandaag();
+    bouwAlles();
+    document.getElementById("wisBoven").addEventListener("click", allesWissen);
+    document.addEventListener("keydown", dialoogToetsen);
+    document.getElementById("dlgSluit").addEventListener("click", sluitDialoog);
+    document.getElementById("dlg").addEventListener("mousedown", function (e) {
+      if (e.target === e.currentTarget) sluitDialoog();
+    });
+    window.addEventListener("beforeunload", bewaar);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+</body>
+</html>
