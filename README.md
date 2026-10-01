@@ -14,6 +14,13 @@ Een andere build opent opnieuw leeg. Dit is een afzonderlijke repository en
 Pages-website met een eigen opslagsleutel, geen beveiligingsisolatie: andere
 projectsites op `jochemclaes.github.io` delen dezelfde browserorigin.
 
+Het vereenvoudigde agendaoverzicht en vraag 10 gebruiken dezelfde drie
+sessieblokken: Gezamenlijke sessies, Onderwijssessies en ICT-sessies, zonder
+tijden of specifieke sessietitels. Bij deze wijziging blijft de buildstempel
+gelijk: alleen een eerder opgeslagen antwoord op vraag 10 wordt verwijderd,
+met een melding om opnieuw te kiezen. Alle andere antwoorden blijven bewaard.
+De opslagmarkering `q10Versie: 1` zorgt dat nieuwe keuzes normaal terugkomen.
+
 ## UCLL-afstemming
 
 Kleuren zijn ontleend aan de publieke UCLL-website: rood `#E30046`, dieprood

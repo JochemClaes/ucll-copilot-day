@@ -184,7 +184,7 @@ table.agenda th,table.agenda td{text-align:start;padding:.6rem .9rem;border-bloc
 table.agenda thead th{background:var(--cp-accent);color:var(--cp-accent-fg);font-size:.78rem;letter-spacing:.07em;text-transform:uppercase}
 table.agenda tbody tr:last-child td{border-block-end:0}
 table.agenda tbody tr:nth-child(even){background:var(--cp-surface-soft)}
-table.agenda td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600;color:var(--cp-accent-hover)}
+table.agenda td:first-child{font-weight:600;color:var(--cp-accent-hover)}
 
 .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cp-current-ink);margin-block-end:.4rem}
 
@@ -644,10 +644,9 @@ var ANKERS = [
 ];
 
 var AGENDA = [
-  ["08:45 - 09:15", "Welkom en opening"],
-  ["09:15 - 10:00", "Microsoft Copilot: herintroductie en strategische update"],
-  ["10:00 - 11:00", "Microsoft Copilot Premium voor beginnende en halfgevorderde gebruikers"],
-  ["11:00 - 12:00", "Microsoft Copilot Premium en Copilot Studio voor gevorderde gebruikers"]
+  ["Gezamenlijke sessies", "Alle deelnemers"],
+  ["Onderwijssessies", "Onderwijsmedewerkers"],
+  ["ICT-sessies", "ICT-medewerkers"]
 ];
 
 var FREQ = ["Nooit", "Minder dan een keer per maand", "Enkele keren per maand", "Wekelijks", "Dagelijks", "Meerdere keren per dag"];
@@ -717,9 +716,9 @@ var QUESTIONS = [
   },
   {
     id: "q10", nr: 10, deel: "A", sec: "A4", type: "radio",
-    title: "Naar welke sessie kijk je het meest uit?",
+    title: "Naar welk sessieblok kijk je het meest uit?",
     hint: "Een antwoord",
-    opts: ["Welkom en opening", "Microsoft Copilot: herintroductie en strategische update", "Microsoft Copilot Premium voor beginnende en halfgevorderde gebruikers", "Microsoft Copilot Premium en Copilot Studio voor gevorderde gebruikers"]
+    opts: AGENDA.map(function (rij) { return rij[0]; })
   },
   {
     id: "q11", nr: 11, deel: "A", sec: "A4", type: "longtext",
@@ -867,6 +866,7 @@ var TEKST = {
     { t: "The New Future of Work Reader, een onderzoekshub van Microsoft", u: "https://microsoft.github.io/nfw-reader/" }
   ],
   agendaTitel: "Agenda",
+  agendaNoot: "Vereenvoudigd overzicht van de sessieblokken.",
   introA: "Dit deel hebben we nodig. Het duurt ongeveer 5 minuten.",
   kaderB: "Dit deel is je persoonlijke huiswerk en is vrijblijvend. Vul je het in, dan krijg je van het team van Microsoft een prompt op maat of een persoonlijk coachingmoment, vertrekkend van jouw eigen proces. Hoe concreter je antwoord, hoe bruikbaarder wat je terugkrijgt.",
   introC: "Wat je thuis al doet, zegt vaak meer over je startpunt dan wat je op het werk gebruikt. Dit deel is volledig vrijblijvend.",
@@ -1222,6 +1222,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = UCLLExport
      leeg, ook in een browser die nog antwoorden voor dezelfde locatie bijhoudt.
      Wie de vragenlijst opnieuw aanmaakt, zet hier een nieuwe waarde. */
   var BOUW = "2026.10.01.1";
+  var Q10_VERSIE = 1;
 
   /* De delen heten overal Deel A tot Deel D, dus draagt ook het rondje de letter. */
   var TABS = [
@@ -1234,6 +1235,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = UCLLExport
   var state = { naam: "", mail: "", datum: "", tab: "A", a: {} };
   var bewaarKan = true;
   var laatsteFocus = null;
+  var sessieKeuzeGewist = false;
 
   /* ---------------- kleine hulpjes ---------------- */
 
@@ -1291,6 +1293,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = UCLLExport
     try {
       window.localStorage.setItem(SLEUTEL, JSON.stringify({
         bouw: BOUW,
+        q10Versie: Q10_VERSIE,
         naam: state.naam,
         mail: state.mail,
         datum: state.datum,
@@ -1337,6 +1340,13 @@ if (typeof module !== "undefined" && module.exports) module.exports = UCLLExport
     state.datum = typeof d.datum === "string" ? d.datum : "";
     state.tab = /^[ABCD]$/.test(d.tab) ? d.tab : "A";
     state.a = (d.a && typeof d.a === "object") ? d.a : {};
+
+    /* Oude optie-indices mogen geen nieuwe sessievoorkeur worden. */
+    if (d.q10Versie !== Q10_VERSIE && Object.prototype.hasOwnProperty.call(state.a, "q10")) {
+      delete state.a.q10;
+      sessieKeuzeGewist = true;
+      bewaar();
+    }
   }
 
   function zetBewaarNoot() {
@@ -1717,10 +1727,11 @@ if (typeof module !== "undefined" && module.exports) module.exports = UCLLExport
         bronnen
       ]),
       el("h3", { class: "agenda-kop", text: TEKST.agendaTitel }),
+      el("p", { class: "q-lead", text: TEKST.agendaNoot }),
       el("div", { class: "tbl-wrap" }, el("table", { class: "agenda" }, [
         el("thead", {}, el("tr", {}, [
-          el("th", { scope: "col", text: "Tijdstip" }),
-          el("th", { scope: "col", text: "Sessie" })
+          el("th", { scope: "col", text: "Sessieblok" }),
+          el("th", { scope: "col", text: "Doelgroep" })
         ])),
         rijen
       ]))
@@ -2068,6 +2079,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = UCLLExport
     laad();
     if (!state.datum) state.datum = vandaag();
     bouwAlles();
+    if (sessieKeuzeGewist) toon("Het sessieoverzicht is gewijzigd. Kies vraag 10 opnieuw; je andere antwoorden blijven bewaard.");
     document.getElementById("wisBoven").addEventListener("click", allesWissen);
     document.addEventListener("keydown", dialoogToetsen);
     document.getElementById("dlgSluit").addEventListener("click", sluitDialoog);
